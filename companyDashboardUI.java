@@ -19,17 +19,24 @@ import javax.swing.JPanel;
  *
  * @author User
  */
-public class companyDashboardUI extends javax.swing.JFrame {
+public class CompanyDashboardUI extends javax.swing.JFrame {
 
     /**
      * Creates new form companyDashboardUI
      */
-    public companyDashboardUI() {
+    public CompanyDashboardUI() {
         initComponents();
-        this.pack();
-        this.setLocationRelativeTo(null);  
-        jLabel1.setFont(new Font("Serif", Font.BOLD, 20));
+        //this 2 lines below are to set the windows/frame in the middle of the user screen
+        this.pack();  
+        this.setLocationRelativeTo(null); 
         
+        //decorative settings to the UI
+        label_welcomeTitle.setFont(new Font("Serif", Font.BOLD, 20));
+        getContentPane().setBackground(new java.awt.Color(255, 251,235));
+        jLayeredPane1.setVisible(false);
+        label_historyRecordTitle.setFont(new Font("Serif", Font.BOLD, 20));
+        label_helpRequestTitle.setFont(new Font("Serif", Font.BOLD, 20));
+        label_companyProfileTitle.setFont(new Font("Serif", Font.BOLD, 20));
     }
     
     /**
@@ -42,129 +49,133 @@ public class companyDashboardUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        button_helpRequest = new javax.swing.JButton();
+        button_viewHistory = new javax.swing.JButton();
+        button_profile = new javax.swing.JButton();
+        label_welcomeTitle = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
+        table_helpRequest = new javax.swing.JTable();
+        label_helpRequestTitle = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
+        table_viewHistory = new javax.swing.JTable();
+        label_historyRecordTitle = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        label_companyIDTitle = new javax.swing.JLabel();
+        label_companyNameTitle = new javax.swing.JLabel();
+        label_addressTitle = new javax.swing.JLabel();
+        label_postalCodeTitle = new javax.swing.JLabel();
+        label_contactNumberTitle = new javax.swing.JLabel();
+        label_subscriptionDateTitle = new javax.swing.JLabel();
+        label_subscriptionDurationTitle = new javax.swing.JLabel();
+        label_companyProfileTitle = new javax.swing.JLabel();
+        label_id = new javax.swing.JLabel();
+        label_name = new javax.swing.JLabel();
+        label_address = new javax.swing.JLabel();
+        label_postalCode = new javax.swing.JLabel();
+        label_contactNum = new javax.swing.JLabel();
+        label_subDate = new javax.swing.JLabel();
+        label_subDuration = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(1000, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 251, 235));
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 200));
         jPanel1.setRequestFocusEnabled(false);
 
-        jButton1.setText("Help Request");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        button_helpRequest.setText("Help Request");
+        button_helpRequest.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        button_helpRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                button_helpRequestActionPerformed(evt);
             }
         });
 
-        jButton2.setText("View Record");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        button_viewHistory.setText("View Record");
+        button_viewHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                button_viewHistoryActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Profile");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        button_profile.setText("Profile");
+        button_profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                button_profileActionPerformed(evt);
             }
         });
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Welcome To The Company Dashboard");
+        label_welcomeTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_welcomeTitle.setText("Welcome To The Company Dashboard");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(button_helpRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(172, 172, 172)
+                .addComponent(button_viewHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                .addComponent(button_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(label_welcomeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label_welcomeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
                 .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(button_helpRequest)
+                    .addComponent(button_viewHistory)
+                    .addComponent(button_profile))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 18, 600, 150));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -2, 1000, 200));
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel2.setBackground(new java.awt.Color(255, 251, 235));
+
+        table_helpRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "No.", "Order ID", "Types of Services", "User Information", "Location"
+                "Order ID", "User ID", "User Name", "Service Type", "Description", "Location", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-        });
-        jScrollPane1.setViewportView(jTable1);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Help Request");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(table_helpRequest);
+
+        label_helpRequestTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_helpRequestTitle.setText("Help Request");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -173,15 +184,15 @@ public class companyDashboardUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
+                    .addComponent(label_helpRequestTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(label_helpRequestTitle)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98))
@@ -189,40 +200,28 @@ public class companyDashboardUI extends javax.swing.JFrame {
 
         jLayeredPane1.add(jPanel2, "card2");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jPanel3.setBackground(new java.awt.Color(255, 251, 235));
+
+        table_viewHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "No.", "Order ID", "Types of Services", "User Information", "Location", "Rating"
+                "Order ID", "User ID", "User Name", "Service Type", "Status", "Location", "Feedback"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(table_viewHistory);
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("History Record");
+        label_historyRecordTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_historyRecordTitle.setText("History Record");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -231,15 +230,15 @@ public class companyDashboardUI extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
+                    .addComponent(label_historyRecordTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addComponent(label_historyRecordTitle)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98))
@@ -247,23 +246,39 @@ public class companyDashboardUI extends javax.swing.JFrame {
 
         jLayeredPane1.add(jPanel3, "card3");
 
-        jLabel4.setText("Company ID:");
+        jPanel4.setBackground(new java.awt.Color(255, 251, 235));
 
-        jLabel5.setText("Company Name: ");
+        label_companyIDTitle.setText("Company ID:");
 
-        jLabel6.setText("Address:");
+        label_companyNameTitle.setText("Company Name: ");
 
-        jLabel7.setText("Postal Code:");
+        label_addressTitle.setText("Address:");
 
-        jLabel8.setText("Contact Number: ");
+        label_postalCodeTitle.setText("Postal Code:");
 
-        jLabel9.setText("Subscription Date: ");
+        label_contactNumberTitle.setText("Contact Number: ");
 
-        jLabel10.setText("Subscription Duration: ");
+        label_subscriptionDateTitle.setText("Subscription Date: ");
 
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Company Profile");
-        jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        label_subscriptionDurationTitle.setText("Subscription Duration: ");
+
+        label_companyProfileTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_companyProfileTitle.setText("Company Profile");
+        label_companyProfileTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        label_id.setText("CompanyID");
+
+        label_name.setText("CompanyName");
+
+        label_address.setText("Address");
+
+        label_postalCode.setText("PostalCode");
+
+        label_contactNum.setText("ContactNumber");
+
+        label_subDate.setText("Subscription Date");
+
+        label_subDuration.setText("Subscription Duration");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -272,62 +287,95 @@ public class companyDashboardUI extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(791, Short.MAX_VALUE))
+                    .addComponent(label_companyIDTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_companyNameTitle)
+                    .addComponent(label_addressTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_postalCodeTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_contactNumberTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_subscriptionDateTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_subscriptionDurationTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(label_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_address, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_postalCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_contactNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_subDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_subDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label_companyProfileTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel11)
+                .addComponent(label_companyProfileTitle)
                 .addGap(33, 33, 33)
-                .addComponent(jLabel4)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_companyIDTitle)
+                    .addComponent(label_id))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_companyNameTitle)
+                    .addComponent(label_name))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel6)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_addressTitle)
+                    .addComponent(label_address))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel7)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_postalCodeTitle)
+                    .addComponent(label_postalCode))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel8)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_contactNumberTitle)
+                    .addComponent(label_contactNum))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel9)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_subscriptionDateTitle)
+                    .addComponent(label_subDate))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel10)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_subscriptionDurationTitle)
+                    .addComponent(label_subDuration))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(jPanel4, "card4");
 
-        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 970, 380));
+        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 1000, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void button_helpRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_helpRequestActionPerformed
         jLayeredPane1.setVisible(true);
-        switchPanel(jPanel2);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        switchPanel(jPanel2);  //each button use this function to swtich the layered panel by passing in which panel
+    }//GEN-LAST:event_button_helpRequestActionPerformed
         
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //jLayeredPane1.setVisible(true);
+    private void button_viewHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_viewHistoryActionPerformed
+        jLayeredPane1.setVisible(true);
         switchPanel(jPanel3);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_button_viewHistoryActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void button_profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_profileActionPerformed
+        Company companyEntity = Company.getInstance();  //getting the companyEntity 
+        
+        //loading all the data from the company class into the label to display out
+        label_name.setText(companyEntity.getCompanyName());
+        label_id.setText(companyEntity.getCompanyID() + "");
+        label_address.setText(companyEntity.getCompanyAddress());
+        label_postalCode.setText(companyEntity.getPostalCode() + "");
+        label_contactNum.setText(companyEntity.getContactNumber() + "");
+        label_subDuration.setText(companyEntity.getSubscriptionDuration());
+        
         jLayeredPane1.setVisible(true);
         switchPanel(jPanel4);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_button_profileActionPerformed
 
     /**
      * @param args the command line arguments
@@ -346,31 +394,28 @@ public class companyDashboardUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(companyDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompanyDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(companyDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompanyDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(companyDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompanyDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(companyDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CompanyDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new companyDashboardUI().setVisible(true);
-                jLayeredPane1.setVisible(false);
-               
-                jLabel3.setFont(new Font("Serif", Font.BOLD, 20));
-                jLabel2.setFont(new Font("Serif", Font.BOLD, 20));
-                jLabel11.setFont(new Font("Serif", Font.BOLD, 20));
-                
+                new CompanyDashboardUI().setVisible(true);               
+
             }
         });
     }
     
+    //switch panel function is to switch the layered panels in the UI when button is click
     public void switchPanel(JPanel panel){
         jLayeredPane1.removeAll();
         jLayeredPane1.add(panel);
@@ -379,20 +424,9 @@ public class companyDashboardUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private static javax.swing.JLabel jLabel11;
-    private static javax.swing.JLabel jLabel2;
-    private static javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private static javax.swing.JButton button_helpRequest;
+    private javax.swing.JButton button_profile;
+    private javax.swing.JButton button_viewHistory;
     private static javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -400,7 +434,25 @@ public class companyDashboardUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel label_address;
+    private javax.swing.JLabel label_addressTitle;
+    private javax.swing.JLabel label_companyIDTitle;
+    private javax.swing.JLabel label_companyNameTitle;
+    private static javax.swing.JLabel label_companyProfileTitle;
+    private javax.swing.JLabel label_contactNum;
+    private javax.swing.JLabel label_contactNumberTitle;
+    private static javax.swing.JLabel label_helpRequestTitle;
+    private static javax.swing.JLabel label_historyRecordTitle;
+    private javax.swing.JLabel label_id;
+    private javax.swing.JLabel label_name;
+    private javax.swing.JLabel label_postalCode;
+    private javax.swing.JLabel label_postalCodeTitle;
+    private javax.swing.JLabel label_subDate;
+    private javax.swing.JLabel label_subDuration;
+    private javax.swing.JLabel label_subscriptionDateTitle;
+    private javax.swing.JLabel label_subscriptionDurationTitle;
+    private javax.swing.JLabel label_welcomeTitle;
+    private javax.swing.JTable table_helpRequest;
+    private javax.swing.JTable table_viewHistory;
     // End of variables declaration//GEN-END:variables
 }
