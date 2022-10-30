@@ -5,7 +5,10 @@
 package com.assignment.assignment5009cem;
 
 import java.awt.Font;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -39,7 +42,10 @@ public class ServicesUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jFrame1 = new javax.swing.JFrame();
-        jDialog1 = new javax.swing.JDialog();
+        jdialog_registerComplete = new javax.swing.JDialog();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        button_done = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         label_servicesTitle = new javax.swing.JLabel();
         label_typeOfServicesTitle = new javax.swing.JLabel();
@@ -60,15 +66,46 @@ public class ServicesUI extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jdialog_registerComplete.setPreferredSize(new java.awt.Dimension(540, 400));
+        jdialog_registerComplete.setSize(new java.awt.Dimension(540, 400));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Thank You for Registering with Us.");
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Our Admin Will Get In Touch With You Shortly");
+
+        button_done.setText("Done");
+        button_done.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_doneActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jdialog_registerCompleteLayout = new javax.swing.GroupLayout(jdialog_registerComplete.getContentPane());
+        jdialog_registerComplete.getContentPane().setLayout(jdialog_registerCompleteLayout);
+        jdialog_registerCompleteLayout.setHorizontalGroup(
+            jdialog_registerCompleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdialog_registerCompleteLayout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addGroup(jdialog_registerCompleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jdialog_registerCompleteLayout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(button_done, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27))
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jdialog_registerCompleteLayout.setVerticalGroup(
+            jdialog_registerCompleteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdialog_registerCompleteLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addComponent(jLabel1)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(button_done)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -149,8 +186,70 @@ public class ServicesUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_submitActionPerformed
-       
+        
+        //set the register status. Deafult at true which is go ahead
+        boolean registerStatus = true;
+        
+        //getting company class data from all the previous step that data is generated and stored
+        Company companyEntity = Company.getInstance();
+        long companyID = companyEntity.getCompanyID();
+        String password = companyEntity.getPassword();
+        String companyName = companyEntity.getCompanyName();
+        String companyAddress = companyEntity.getCompanyAddress();
+        int postalCode = companyEntity.getPostalCode();
+        int contactNumber = companyEntity.getContactNumber();
+        String duration = companyEntity.getSubscriptionDuration();
+        
+        //setting services class data 
+        Services servicesEntity = Services.getInstance();
+        servicesEntity.setProviderID(companyID);
+        servicesEntity.setProviderName(companyName);
+        servicesEntity.setServiceType(comboBox_serviceType.getSelectedItem().toString());
+        servicesEntity.setServiceDescription(textArea_description.getText());
+        servicesEntity.setPostalCode(postalCode);
+        
+        
+        // entering into the database
+        try{
+            
+            Connection conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+
+            /**code for insert operation. Here we insert into two table, first is company table second is services table
+             * the company table will store the company data while the services will store all the services data provided by that company
+             */
+            stmt.executeUpdate("INSERT INTO company (companyID, password,companyName,companyAddress,postalCode,contactNumber,subscriptionDuration,status) "
+                    + "VALUES ('"+companyID+"','"+password+"','"+companyName+"',"
+                            + "'"+companyAddress+"','"+postalCode+"','"+contactNumber+"','"+duration+"','"+"Approved"+"')");
+            
+            
+            stmt.executeUpdate("INSERT INTO services (providerID, providerName,serviceType,serviceDescription,postalCode,status)"
+                    + "VALUES ('"+companyID+"','"+companyName+"','"+servicesEntity.getServiceType()+"',"
+                            + "'"+servicesEntity.getServiceDescription()+"','"+servicesEntity.getPostalCode()+"','"+"Approved"+"')");
+            
+        }
+        catch(SQLException exception){
+            label_servicesTitle.setText("Connection Error. Unable To Register");
+            registerStatus = false;
+            
+        }
+        
+        //if entering into database is success a pop up window will tell the user to wait for the admin respond and bring user back to login ui
+        if(registerStatus){
+            jdialog_registerComplete.pack();
+            jdialog_registerComplete.setLocationRelativeTo(null);
+            jdialog_registerComplete.show();
+        }
+        
     }//GEN-LAST:event_button_submitActionPerformed
+    
+    //button in the pop up window, if click will bring user back to login ui
+    private void button_doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_doneActionPerformed
+        LoginUI itemloader = new LoginUI();
+        itemloader.setVisible(true);
+        dispose();
+        jdialog_registerComplete.dispose();
+    }//GEN-LAST:event_button_doneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,12 +288,15 @@ public class ServicesUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton button_done;
     private static javax.swing.JButton button_submit;
     private static javax.swing.JComboBox<String> comboBox_serviceType;
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JDialog jdialog_registerComplete;
     private static javax.swing.JLabel label_descriptionTitle;
     private static javax.swing.JLabel label_servicesTitle;
     private javax.swing.JLabel label_typeOfServicesTitle;
