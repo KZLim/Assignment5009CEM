@@ -27,7 +27,6 @@ public class LoginUI extends javax.swing.JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         label_loginTitle.setFont(new Font("Serif", Font.BOLD, 20));
-        
     }
 
     /**
@@ -93,6 +92,11 @@ public class LoginUI extends javax.swing.JFrame {
         button_userRegister.setBackground(new java.awt.Color(64, 50, 184));
         button_userRegister.setForeground(new java.awt.Color(255, 255, 255));
         button_userRegister.setText("Go Register");
+        button_userRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_userRegisterActionPerformed(evt);
+            }
+        });
 
         comboBox_userType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Provider" }));
 
@@ -124,9 +128,8 @@ public class LoginUI extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(label_logInAsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(label_userID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(label_passwordTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)))
+                                    .addComponent(label_userID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(label_passwordTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
                                 .addGap(23, 23, 23)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(textField_password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,7 +202,56 @@ public class LoginUI extends javax.swing.JFrame {
         
         //check what user is loggin in. Either normal user or a provvider which whom are the company or admin
         if(userType.equals("User")){
+            String userID = "";
+            String password = "";
+            boolean loginStatus = false;
             
+            try{
+                userID = textField_userID.getText();
+                password = textField_password.getText();
+            }
+            catch(NumberFormatException e){
+                System.out.println(e);
+            }
+            
+            try{
+                    Connection conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");  //db connection
+
+                    String query = "SELECT * from users Where userID = '" + userID + "'";  //sql query
+                    Statement stmt = conDB.createStatement();  
+                    ResultSet rs = stmt.executeQuery(query);
+                    
+                    //check against user after reading it from the database
+                    while(rs.next()){
+                        //if correct id and password, will go into here can change the login state to true
+                        if(textField_userID.getText().equals(rs.getString("userID")) && password.equals(rs.getString("password"))){
+                            loginStatus = true;
+                            
+                            //once the credentials is true set the entire company class to make sure the data is ready to be use
+                            Users userEntity = Users.getInstance();
+                            userEntity.setUserID(userID);
+                            userEntity.setUserName(rs.getString("userName"));
+                            userEntity.setEmail(rs.getString("email"));
+                            userEntity.setContactNumber(rs.getString("contactNumber"));
+                        }
+                    }
+
+            }
+            catch(SQLException exception){  //catch any sql/db error
+
+                System.out.println(exception);
+                
+            }
+            
+            //if state is true then wil direct to dashboard
+            if(loginStatus == true){
+                UserDashboardUI itemloader = new UserDashboardUI();
+                itemloader.setVisible(true);
+                dispose();
+            }
+            else{
+                label_loginTitle.setText("Wrong Credentials. Check your User ID and Password");
+            }
             
         }
         else if(userType.equals("Provider")){
@@ -240,7 +292,8 @@ public class LoginUI extends javax.swing.JFrame {
                             companyEntity.setCompanyAddress(rs.getString("companyAddress"));
                             companyEntity.setPostalCode(Integer.parseInt(rs.getString("postalCode")));
                             companyEntity.setStatus("status");
-                            companyEntity.setContactNumber(Integer.parseInt(rs.getString("contactNumber")));
+                            companyEntity.setContactNumber(rs.getString("contactNumber"));
+                            companyEntity.setSubscriptionDate(rs.getString("subscriptionDate"));
                             companyEntity.setSubscriptionDuration(rs.getString("subscriptionDuration"));
                         }
                     }
@@ -264,6 +317,13 @@ public class LoginUI extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_button_loginActionPerformed
+
+    private void button_userRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_userRegisterActionPerformed
+
+        UserRegisterUI itemloader = new UserRegisterUI();
+        itemloader.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_button_userRegisterActionPerformed
 
     /**
      * @param args the command line arguments

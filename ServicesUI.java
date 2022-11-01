@@ -66,7 +66,6 @@ public class ServicesUI extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        jdialog_registerComplete.setPreferredSize(new java.awt.Dimension(540, 400));
         jdialog_registerComplete.setSize(new java.awt.Dimension(540, 400));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -197,8 +196,10 @@ public class ServicesUI extends javax.swing.JFrame {
         String companyName = companyEntity.getCompanyName();
         String companyAddress = companyEntity.getCompanyAddress();
         int postalCode = companyEntity.getPostalCode();
-        int contactNumber = companyEntity.getContactNumber();
+        String contactNumber = companyEntity.getContactNumber();
+        String date = companyEntity.getSubscriptionDate();
         String duration = companyEntity.getSubscriptionDuration();
+        String status = companyEntity.getStatus();
         
         //setting services class data 
         Services servicesEntity = Services.getInstance();
@@ -207,6 +208,7 @@ public class ServicesUI extends javax.swing.JFrame {
         servicesEntity.setServiceType(comboBox_serviceType.getSelectedItem().toString());
         servicesEntity.setServiceDescription(textArea_description.getText());
         servicesEntity.setPostalCode(postalCode);
+        servicesEntity.setApprovalStatus("Pending");
         
         
         // entering into the database
@@ -218,14 +220,14 @@ public class ServicesUI extends javax.swing.JFrame {
             /**code for insert operation. Here we insert into two table, first is company table second is services table
              * the company table will store the company data while the services will store all the services data provided by that company
              */
-            stmt.executeUpdate("INSERT INTO company (companyID, password,companyName,companyAddress,postalCode,contactNumber,subscriptionDuration,status) "
+            stmt.executeUpdate("INSERT INTO company (companyID, password,companyName,companyAddress,postalCode,contactNumber,subscriptionDate,subscriptionDuration,status) "
                     + "VALUES ('"+companyID+"','"+password+"','"+companyName+"',"
-                            + "'"+companyAddress+"','"+postalCode+"','"+contactNumber+"','"+duration+"','"+"Approved"+"')");
+                            + "'"+companyAddress+"','"+postalCode+"','"+contactNumber+"','"+date+"','"+duration+"','"+status+"')");
             
             
             stmt.executeUpdate("INSERT INTO services (providerID, providerName,serviceType,serviceDescription,postalCode,status)"
                     + "VALUES ('"+companyID+"','"+companyName+"','"+servicesEntity.getServiceType()+"',"
-                            + "'"+servicesEntity.getServiceDescription()+"','"+servicesEntity.getPostalCode()+"','"+"Approved"+"')");
+                            + "'"+servicesEntity.getServiceDescription()+"','"+servicesEntity.getPostalCode()+"','"+servicesEntity.getApprovalStatus()+"')");
             
         }
         catch(SQLException exception){

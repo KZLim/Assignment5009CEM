@@ -19,7 +19,7 @@ public class Company {
     private String companyName="";
     private String companyAddress = "";
     private int postalCode = 0;
-    private int contactNumber = 0;
+    private String contactNumber = "";
     private String subscriptionDate = "";
     private String subscriptionDuration = "";
     private String status = "";
@@ -34,7 +34,7 @@ public class Company {
         companyName = "";
         companyAddress = "";
         postalCode = 0;
-        contactNumber = 0;
+        contactNumber = "";
         subscriptionDate = "";
         subscriptionDuration = "";
         status = "";
@@ -82,11 +82,11 @@ public class Company {
         this.postalCode = postalCode;
     }
 
-    public int getContactNumber() {
+    public String getContactNumber() {
         return contactNumber;
     }
 
-    public void setContactNumber(int contactNumber) {
+    public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
 
