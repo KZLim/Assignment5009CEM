@@ -215,7 +215,7 @@ public class RegisterUI extends javax.swing.JFrame {
         String password = passwordField_password.getText();
         String companyAddress = textField_companyAddress.getText();
         int postalCode = Integer.parseInt(textField_postalCode.getText());
-        int contactNumber = Integer.parseInt(textField_contactNumber.getText());
+        String contactNumber = textField_contactNumber.getText();
         
         
         //validation for the input fields

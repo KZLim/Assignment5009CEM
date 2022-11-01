@@ -5,6 +5,9 @@
 package com.assignment.assignment5009cem;
 
 import java.awt.Font;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -182,9 +185,13 @@ public class SubscriptionUI extends javax.swing.JFrame {
 
     private void button_nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_nextActionPerformed
         
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        
         //call the singleton company object to continue store the subscription data
         Company companyEntity = Company.getInstance();                
         companyEntity.setSubscriptionDuration(buttonGrp_subscriptionDuration.getSelection().getActionCommand()); //to get what subscription plan they selected
+        companyEntity.setSubscriptionDate(dateFormat.format(date));
         companyEntity.setStatus("Pending");  //the status of all new user are set to pending
         
         //go next step of the registration process

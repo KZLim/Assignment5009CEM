@@ -4,14 +4,25 @@
  */
 package com.assignment.assignment5009cem;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author User
  */
 public class UserDashboardUI extends javax.swing.JFrame {
-
+    
+    long providerID_ready = 0;
+    String serviceType_ready = "";
+    int requestID = 0;
+    
     /**
      * Creates new form UserDashboardUI
      */
@@ -19,6 +30,8 @@ public class UserDashboardUI extends javax.swing.JFrame {
         initComponents();
         jLayeredPane1.setVisible(false);
         getContentPane().setBackground(new java.awt.Color(255, 251,235));
+        this.pack();
+        this.setLocationRelativeTo(null);
 
     }
 
@@ -31,11 +44,27 @@ public class UserDashboardUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jdialog_requestConfirmation = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        button_confirm = new javax.swing.JButton();
+        textField_address = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        textArea_description = new javax.swing.JTextArea();
+        label_adddressTitle = new javax.swing.JLabel();
+        label_descriptionTitle = new javax.swing.JLabel();
+        button_cancel = new javax.swing.JButton();
+        jdialog_completeRequest = new javax.swing.JDialog();
+        jLabel4 = new javax.swing.JLabel();
+        button_Done = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        textArea_feedback = new javax.swing.JTextArea();
+        label_feedbackTitle = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         label_userDashboardTitle = new javax.swing.JLabel();
         button_viewCompanyList = new javax.swing.JButton();
         button_RequestHelp = new javax.swing.JButton();
-        button_viewHistory = new javax.swing.JButton();
+        button_viewMyRequest = new javax.swing.JButton();
         button_profile = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel2 = new javax.swing.JPanel();
@@ -45,11 +74,11 @@ public class UserDashboardUI extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_helpRequest = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        label_RequestHistoryTitle = new javax.swing.JLabel();
+        label_myRequestTitle = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        table_requestHistory = new javax.swing.JTable();
+        table_myRequest = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         label_profileTitle = new javax.swing.JLabel();
         label_idTitle = new javax.swing.JLabel();
@@ -60,6 +89,142 @@ public class UserDashboardUI extends javax.swing.JFrame {
         label_name = new javax.swing.JLabel();
         label_email = new javax.swing.JLabel();
         label_contact = new javax.swing.JLabel();
+
+        jdialog_requestConfirmation.setSize(new java.awt.Dimension(540, 400));
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Are you sure you want to place this help Request ?");
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Fill In The Necessary Details");
+
+        button_confirm.setText("Confirm");
+        button_confirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_confirmActionPerformed(evt);
+            }
+        });
+
+        textArea_description.setColumns(20);
+        textArea_description.setRows(5);
+        jScrollPane4.setViewportView(textArea_description);
+
+        label_adddressTitle.setText("Address: ");
+
+        label_descriptionTitle.setText("Description:");
+
+        button_cancel.setText("Cancel");
+        button_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_cancelActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jdialog_requestConfirmationLayout = new javax.swing.GroupLayout(jdialog_requestConfirmation.getContentPane());
+        jdialog_requestConfirmation.getContentPane().setLayout(jdialog_requestConfirmationLayout);
+        jdialog_requestConfirmationLayout.setHorizontalGroup(
+            jdialog_requestConfirmationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdialog_requestConfirmationLayout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addGroup(jdialog_requestConfirmationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdialog_requestConfirmationLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
+            .addGroup(jdialog_requestConfirmationLayout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addGroup(jdialog_requestConfirmationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jdialog_requestConfirmationLayout.createSequentialGroup()
+                        .addGroup(jdialog_requestConfirmationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jdialog_requestConfirmationLayout.createSequentialGroup()
+                                .addComponent(label_adddressTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textField_address, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jdialog_requestConfirmationLayout.createSequentialGroup()
+                                .addComponent(label_descriptionTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jdialog_requestConfirmationLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(button_confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(button_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71))))
+        );
+        jdialog_requestConfirmationLayout.setVerticalGroup(
+            jdialog_requestConfirmationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdialog_requestConfirmationLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(24, 24, 24)
+                .addGroup(jdialog_requestConfirmationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textField_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_adddressTitle))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jdialog_requestConfirmationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_descriptionTitle)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(jdialog_requestConfirmationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(button_confirm)
+                    .addComponent(button_cancel))
+                .addGap(50, 50, 50))
+        );
+
+        jdialog_completeRequest.setSize(new java.awt.Dimension(540, 400));
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Complete Request?");
+
+        button_Done.setText("Done");
+        button_Done.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_DoneActionPerformed(evt);
+            }
+        });
+
+        textArea_feedback.setColumns(20);
+        textArea_feedback.setRows(5);
+        jScrollPane5.setViewportView(textArea_feedback);
+
+        label_feedbackTitle.setText("Feedback");
+
+        javax.swing.GroupLayout jdialog_completeRequestLayout = new javax.swing.GroupLayout(jdialog_completeRequest.getContentPane());
+        jdialog_completeRequest.getContentPane().setLayout(jdialog_completeRequestLayout);
+        jdialog_completeRequestLayout.setHorizontalGroup(
+            jdialog_completeRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdialog_completeRequestLayout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(label_feedbackTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdialog_completeRequestLayout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addGroup(jdialog_completeRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdialog_completeRequestLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdialog_completeRequestLayout.createSequentialGroup()
+                        .addComponent(button_Done, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(222, 222, 222))))
+        );
+        jdialog_completeRequestLayout.setVerticalGroup(
+            jdialog_completeRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdialog_completeRequestLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel4)
+                .addGap(49, 49, 49)
+                .addGroup(jdialog_completeRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(label_feedbackTitle)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(button_Done)
+                .addGap(61, 61, 61))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1000, 600));
@@ -84,10 +249,10 @@ public class UserDashboardUI extends javax.swing.JFrame {
             }
         });
 
-        button_viewHistory.setText("View History");
-        button_viewHistory.addActionListener(new java.awt.event.ActionListener() {
+        button_viewMyRequest.setText("My Request");
+        button_viewMyRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_viewHistoryActionPerformed(evt);
+                button_viewMyRequestActionPerformed(evt);
             }
         });
 
@@ -112,7 +277,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
                 .addGap(92, 92, 92)
                 .addComponent(button_RequestHelp, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
-                .addComponent(button_viewHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(button_viewMyRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(105, 105, 105)
                 .addComponent(button_profile, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74))
@@ -126,7 +291,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(button_viewCompanyList)
                     .addComponent(button_RequestHelp)
-                    .addComponent(button_viewHistory)
+                    .addComponent(button_viewMyRequest)
                     .addComponent(button_profile))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
@@ -201,7 +366,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Help Request");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_helpRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -212,12 +377,32 @@ public class UserDashboardUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane2.setViewportView(jTable1);
+        table_helpRequest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_helpRequestMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(table_helpRequest);
+        if (table_helpRequest.getColumnModel().getColumnCount() > 0) {
+            table_helpRequest.getColumnModel().getColumn(0).setResizable(false);
+            table_helpRequest.getColumnModel().getColumn(1).setResizable(false);
+            table_helpRequest.getColumnModel().getColumn(2).setResizable(false);
+            table_helpRequest.getColumnModel().getColumn(3).setResizable(false);
+            table_helpRequest.getColumnModel().getColumn(4).setResizable(false);
+            table_helpRequest.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -244,22 +429,22 @@ public class UserDashboardUI extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 251, 235));
 
-        label_RequestHistoryTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_RequestHistoryTitle.setText("Request History");
+        label_myRequestTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_myRequestTitle.setText("My Request");
 
-        table_requestHistory.setModel(new javax.swing.table.DefaultTableModel(
+        table_myRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Order ID", "Provider ID", "Service Type", "Description", "Location", "Comment"
+                "Order ID", "Provider ID", "Service Type", "Description", "Location", "Status", "Comment"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -270,14 +455,20 @@ public class UserDashboardUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(table_requestHistory);
-        if (table_requestHistory.getColumnModel().getColumnCount() > 0) {
-            table_requestHistory.getColumnModel().getColumn(0).setResizable(false);
-            table_requestHistory.getColumnModel().getColumn(1).setResizable(false);
-            table_requestHistory.getColumnModel().getColumn(2).setResizable(false);
-            table_requestHistory.getColumnModel().getColumn(3).setResizable(false);
-            table_requestHistory.getColumnModel().getColumn(4).setResizable(false);
-            table_requestHistory.getColumnModel().getColumn(5).setResizable(false);
+        table_myRequest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_myRequestMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(table_myRequest);
+        if (table_myRequest.getColumnModel().getColumnCount() > 0) {
+            table_myRequest.getColumnModel().getColumn(0).setResizable(false);
+            table_myRequest.getColumnModel().getColumn(1).setResizable(false);
+            table_myRequest.getColumnModel().getColumn(2).setResizable(false);
+            table_myRequest.getColumnModel().getColumn(3).setResizable(false);
+            table_myRequest.getColumnModel().getColumn(4).setResizable(false);
+            table_myRequest.getColumnModel().getColumn(5).setResizable(false);
+            table_myRequest.getColumnModel().getColumn(6).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -288,14 +479,14 @@ public class UserDashboardUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
-                    .addComponent(label_RequestHistoryTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(label_myRequestTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(label_RequestHistoryTitle)
+                .addComponent(label_myRequestTitle)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
                 .addContainerGap())
@@ -371,24 +562,239 @@ public class UserDashboardUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button_viewCompanyListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_viewCompanyListActionPerformed
+        
+        Connection conDB = null;
+        String name = "";
+        String address = "";
+        int postalCode = 0;
+        String contactNumber = "";
+        
+        
+        try{
+            
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+            
+            //code for read operation
+            String query = "SELECT * from company WHERE status = '" +"Approved"+ "'";
+            ResultSet rs = stmt.executeQuery(query);
+            
+            DefaultTableModel model = (DefaultTableModel) table_companyList.getModel();
+            model.setRowCount(0);
+            
+            while(rs.next()){
+                name = (rs.getString("companyName"));
+                address =(rs.getString("companyAddress"));
+                postalCode = (Integer.parseInt(rs.getString("postalCode")));
+                contactNumber = (rs.getString("contactNumber"));
+                
+                Object[] row = {name,address,postalCode,contactNumber};
+                model.addRow(row);
+                
+            }
+        }
+        catch(SQLException exception){
+            
+            System.out.print(exception.getMessage());
+        }
+        
         jLayeredPane1.setVisible(true);
         switchPanel(jPanel2);  //each button use this function to swtich the layered panel by passing in which panel
     }//GEN-LAST:event_button_viewCompanyListActionPerformed
 
     private void button_profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_profileActionPerformed
+        Users userEntity = Users.getInstance();
+        
+        label_id.setText(userEntity.getUserID());
+        label_name.setText(userEntity.getUserName());
+        label_email.setText(userEntity.getEmail());
+        label_contact.setText(userEntity.getContactNumber());
+        
         jLayeredPane1.setVisible(true);
         switchPanel(jPanel5);
     }//GEN-LAST:event_button_profileActionPerformed
 
     private void button_RequestHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_RequestHelpActionPerformed
+        
+        Connection conDB = null;
+        int id = 0;
+        long providerID = 0;
+        String providerName = "";
+        String serviceType = "";
+        String description = "";
+        int postalCode = 0;
+        
+        
+        try{
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+            
+            //code for read operation
+            String query = "SELECT * from services WHERE status = '" +"Approved"+ "'";
+            ResultSet rs = stmt.executeQuery(query);
+            
+            DefaultTableModel model = (DefaultTableModel) table_helpRequest.getModel();
+            model.setRowCount(0);
+            
+            while(rs.next()){
+                id = (Integer.parseInt(rs.getString("serviceID")));
+                providerID =(Long.parseLong(rs.getString("providerID")));
+                providerName = (rs.getString("providerName"));
+                serviceType = (rs.getString("serviceType"));
+                description = (rs.getString("serviceDescription"));
+                postalCode = (Integer.parseInt(rs.getString("postalCode")));
+                
+                Object[] row = {id,providerID,providerName,serviceType,description,postalCode};
+                model.addRow(row);
+                
+            }
+        }
+        catch(SQLException exception){
+            
+            System.out.print(exception.getMessage());
+        }
+        
         jLayeredPane1.setVisible(true);
         switchPanel(jPanel3);
     }//GEN-LAST:event_button_RequestHelpActionPerformed
 
-    private void button_viewHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_viewHistoryActionPerformed
+    private void button_viewMyRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_viewMyRequestActionPerformed
+        
+        Connection conDB = null;
+        int id = 0;
+        long providerID = 0;
+        String serviceType = "";
+        String description = "";
+        String location = "";
+        String status = "";
+        String feedback = "";
+        
+        Users userEntity = Users.getInstance();
+        
+        try{
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+            
+            //code for read operation
+            String query = "SELECT * from request WHERE userID = '" +userEntity.getUserID()+ "'";
+            ResultSet rs = stmt.executeQuery(query);
+            
+            DefaultTableModel model = (DefaultTableModel) table_myRequest.getModel();
+            model.setRowCount(0);
+            
+            while(rs.next()){
+                
+                id = (Integer.parseInt(rs.getString("requestID")));
+                providerID =(Long.parseLong(rs.getString("providerID")));
+                serviceType = rs.getString("serviceType");
+                description = rs.getString("description");
+                location = rs.getString("location");
+                status = rs.getString("status");
+                feedback = rs.getString("feedback");
+                
+                Object[] row = {id,providerID,serviceType,description,location,status,feedback};
+                model.addRow(row);
+                
+            }
+        }
+        catch(SQLException exception){
+            
+            System.out.print(exception.getMessage());
+        }
+        
+        
         jLayeredPane1.setVisible(true);
         switchPanel(jPanel4);
-    }//GEN-LAST:event_button_viewHistoryActionPerformed
+    }//GEN-LAST:event_button_viewMyRequestActionPerformed
+
+    private void table_helpRequestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_helpRequestMouseClicked
+                
+        int index = table_helpRequest.getSelectedRow();
+        TableModel model = table_helpRequest.getModel();
+        
+        providerID_ready = (Long.parseLong(model.getValueAt(index, 1).toString()));
+        serviceType_ready = model.getValueAt(index, 3).toString();
+
+        jdialog_requestConfirmation.setVisible(true);
+        jdialog_requestConfirmation.pack();
+        jdialog_requestConfirmation.setLocationRelativeTo(null);
+
+    }//GEN-LAST:event_table_helpRequestMouseClicked
+
+    private void button_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_cancelActionPerformed
+
+        jdialog_requestConfirmation.dispose();
+
+    }//GEN-LAST:event_button_cancelActionPerformed
+
+    private void button_confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_confirmActionPerformed
+
+        Connection conDB = null;
+
+        Users userEntity = Users.getInstance();
+        String description = textArea_description.getText();
+        String location = textField_address.getText();
+        String feedback ="";
+
+        try{
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+
+            //code for insert operation
+            stmt.executeUpdate("INSERT INTO request (userID, userName,providerID,serviceType,description,status,location,feedback) "
+                + "VALUES ('"+userEntity.getUserID()+"','"+userEntity.getUserName()+"','"+providerID_ready+"',"
+                + "'"+serviceType_ready+"','"+description+"','"+"Pending"+"','"+location+"','"+feedback+"')");
+        }
+        catch(SQLException exception){
+
+            System.out.print(exception.getMessage());
+        }
+        
+        jdialog_requestConfirmation.dispose();
+    }//GEN-LAST:event_button_confirmActionPerformed
+
+    private void table_myRequestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_myRequestMouseClicked
+
+        
+        int index = table_myRequest.getSelectedRow();
+        TableModel model = table_myRequest.getModel();
+        
+        requestID = (Integer.parseInt(model.getValueAt(index, 0).toString()));
+        
+        
+        if(model.getValueAt(index, 5).toString().equals("Accepted")){
+            jdialog_completeRequest.setVisible(true);
+            jdialog_completeRequest.pack();
+            jdialog_completeRequest.setLocationRelativeTo(null);
+        }
+
+    }//GEN-LAST:event_table_myRequestMouseClicked
+
+    private void button_DoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_DoneActionPerformed
+        
+        Connection conDB = null;
+        
+        String feedback = textArea_feedback.getText();
+        String newStatus = "Done";
+
+        try{
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+            Statement stmt2 = conDB.createStatement();
+
+            //code for insert operation
+            stmt.executeUpdate("update request set feedback = '"+feedback+"' where requestID = '"+requestID+"'");
+            
+            stmt2.executeUpdate("update request set status = '"+newStatus+"' where requestID = '"+requestID+"'");
+        }
+        catch(SQLException exception){
+
+            System.out.print(exception.getMessage());
+        }
+        
+        jdialog_completeRequest.dispose();
+
+    }//GEN-LAST:event_button_DoneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -434,11 +840,17 @@ public class UserDashboardUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton button_Done;
     private javax.swing.JButton button_RequestHelp;
+    private javax.swing.JButton button_cancel;
+    private javax.swing.JButton button_confirm;
     private javax.swing.JButton button_profile;
     private javax.swing.JButton button_viewCompanyList;
-    private javax.swing.JButton button_viewHistory;
+    private javax.swing.JButton button_viewMyRequest;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -448,20 +860,30 @@ public class UserDashboardUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel label_RequestHistoryTitle;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JDialog jdialog_completeRequest;
+    private javax.swing.JDialog jdialog_requestConfirmation;
+    private javax.swing.JLabel label_adddressTitle;
     private javax.swing.JLabel label_companyListTitle;
     private javax.swing.JLabel label_contact;
     private javax.swing.JLabel label_contactTitle;
+    private javax.swing.JLabel label_descriptionTitle;
     private javax.swing.JLabel label_email;
     private javax.swing.JLabel label_emailTitle;
+    private javax.swing.JLabel label_feedbackTitle;
     private javax.swing.JLabel label_id;
     private javax.swing.JLabel label_idTitle;
+    private javax.swing.JLabel label_myRequestTitle;
     private javax.swing.JLabel label_name;
     private javax.swing.JLabel label_nameTitle;
     private javax.swing.JLabel label_profileTitle;
     private javax.swing.JLabel label_userDashboardTitle;
     private javax.swing.JTable table_companyList;
-    private javax.swing.JTable table_requestHistory;
+    private javax.swing.JTable table_helpRequest;
+    private javax.swing.JTable table_myRequest;
+    private javax.swing.JTextArea textArea_description;
+    private javax.swing.JTextArea textArea_feedback;
+    private javax.swing.JTextField textField_address;
     // End of variables declaration//GEN-END:variables
 }

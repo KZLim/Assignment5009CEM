@@ -14,13 +14,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author User
  */
 public class CompanyDashboardUI extends javax.swing.JFrame {
-
+    
+    int requestID = 0;
+    
     /**
      * Creates new form companyDashboardUI
      */
@@ -48,6 +52,10 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jdialog_acceptJob = new javax.swing.JDialog();
+        jLabel4 = new javax.swing.JLabel();
+        button_accept = new javax.swing.JButton();
+        button_cancel = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         button_helpRequest = new javax.swing.JButton();
         button_viewHistory = new javax.swing.JButton();
@@ -78,6 +86,52 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
         label_contactNum = new javax.swing.JLabel();
         label_subDate = new javax.swing.JLabel();
         label_subDuration = new javax.swing.JLabel();
+
+        jdialog_acceptJob.setSize(new java.awt.Dimension(540, 400));
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Are you sure you want to accept this request ?");
+
+        button_accept.setText("Accept");
+        button_accept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_acceptActionPerformed(evt);
+            }
+        });
+
+        button_cancel.setText("Cancel");
+        button_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_cancelActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jdialog_acceptJobLayout = new javax.swing.GroupLayout(jdialog_acceptJob.getContentPane());
+        jdialog_acceptJob.getContentPane().setLayout(jdialog_acceptJobLayout);
+        jdialog_acceptJobLayout.setHorizontalGroup(
+            jdialog_acceptJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdialog_acceptJobLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jdialog_acceptJobLayout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(button_accept, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addComponent(button_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
+        );
+        jdialog_acceptJobLayout.setVerticalGroup(
+            jdialog_acceptJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdialog_acceptJobLayout.createSequentialGroup()
+                .addContainerGap(100, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(56, 56, 56)
+                .addGroup(jdialog_acceptJobLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(button_accept)
+                    .addComponent(button_cancel))
+                .addGap(133, 133, 133))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -161,7 +215,7 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, true, true, true, true
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -172,7 +226,21 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        table_helpRequest.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_helpRequestMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table_helpRequest);
+        if (table_helpRequest.getColumnModel().getColumnCount() > 0) {
+            table_helpRequest.getColumnModel().getColumn(0).setResizable(false);
+            table_helpRequest.getColumnModel().getColumn(1).setResizable(false);
+            table_helpRequest.getColumnModel().getColumn(2).setResizable(false);
+            table_helpRequest.getColumnModel().getColumn(3).setResizable(false);
+            table_helpRequest.getColumnModel().getColumn(4).setResizable(false);
+            table_helpRequest.getColumnModel().getColumn(5).setResizable(false);
+            table_helpRequest.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         label_helpRequestTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_helpRequestTitle.setText("Help Request");
@@ -213,12 +281,28 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane2.setViewportView(table_viewHistory);
+        if (table_viewHistory.getColumnModel().getColumnCount() > 0) {
+            table_viewHistory.getColumnModel().getColumn(0).setResizable(false);
+            table_viewHistory.getColumnModel().getColumn(1).setResizable(false);
+            table_viewHistory.getColumnModel().getColumn(2).setResizable(false);
+            table_viewHistory.getColumnModel().getColumn(3).setResizable(false);
+            table_viewHistory.getColumnModel().getColumn(4).setResizable(false);
+            table_viewHistory.getColumnModel().getColumn(5).setResizable(false);
+            table_viewHistory.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         label_historyRecordTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_historyRecordTitle.setText("History Record");
@@ -353,6 +437,53 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button_helpRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_helpRequestActionPerformed
+        
+        Connection conDB = null;
+        int orderID = 0;
+        String userID = "";
+        String userName = "";
+        String serviceType = "";
+        String description = "";
+        String location = "";
+        String status = "";
+        
+        Company companyEntity = Company.getInstance();
+        
+        
+        try{
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+            
+            //code for read operation
+            String query = "SELECT * from request WHERE providerID = '" +companyEntity.getCompanyID()+ "'";
+            ResultSet rs = stmt.executeQuery(query);
+            
+            DefaultTableModel model = (DefaultTableModel) table_helpRequest.getModel();
+            model.setRowCount(0);
+            
+            while(rs.next()){
+                
+               if(!rs.getString("status").equals("Done")){
+                   
+                   orderID =(Integer.parseInt(rs.getString("requestID")));
+                   userID = rs.getString("userID");
+                   userName = rs.getString("username");
+                   serviceType = rs.getString("serviceType");
+                   description = rs.getString("description");
+                   location = rs.getString("location");
+                   status = rs.getString("status");
+                   
+                   
+                   Object[] row = {orderID,userID,userName,serviceType,description,location,status};
+                   model.addRow(row); 
+                }
+            }
+        }
+        catch(SQLException exception){
+            
+            System.out.print(exception.getMessage());
+        }
+        
         jLayeredPane1.setVisible(true);
         switchPanel(jPanel2);  //each button use this function to swtich the layered panel by passing in which panel
     }//GEN-LAST:event_button_helpRequestActionPerformed
@@ -371,11 +502,53 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
         label_address.setText(companyEntity.getCompanyAddress());
         label_postalCode.setText(companyEntity.getPostalCode() + "");
         label_contactNum.setText(companyEntity.getContactNumber() + "");
+        label_subDate.setText(companyEntity.getSubscriptionDate() + "");
         label_subDuration.setText(companyEntity.getSubscriptionDuration());
         
         jLayeredPane1.setVisible(true);
         switchPanel(jPanel4);
     }//GEN-LAST:event_button_profileActionPerformed
+
+    private void table_helpRequestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_helpRequestMouseClicked
+
+        int index = table_helpRequest.getSelectedRow();
+        TableModel model = table_helpRequest.getModel();
+        
+        requestID = (Integer.parseInt(model.getValueAt(index, 0).toString()));
+
+        
+        if(model.getValueAt(index, 6).toString().equals("Pending")){
+            jdialog_acceptJob.setVisible(true);
+            jdialog_acceptJob.pack();
+            jdialog_acceptJob.setLocationRelativeTo(null);
+        }
+    }//GEN-LAST:event_table_helpRequestMouseClicked
+
+    private void button_acceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_acceptActionPerformed
+
+        Connection conDB = null;
+
+        String newStatus = "Accepted";
+
+        try{
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+
+            //code for insert operation
+            stmt.executeUpdate("update request set status = '"+newStatus+"' where requestID = '"+requestID+"'");
+
+        }
+        catch(SQLException exception){
+
+            System.out.print(exception.getMessage());
+        }
+
+        jdialog_acceptJob.dispose();
+    }//GEN-LAST:event_button_acceptActionPerformed
+
+    private void button_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_cancelActionPerformed
+        jdialog_acceptJob.dispose();
+    }//GEN-LAST:event_button_cancelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -424,9 +597,12 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton button_accept;
+    private javax.swing.JButton button_cancel;
     private static javax.swing.JButton button_helpRequest;
     private javax.swing.JButton button_profile;
     private javax.swing.JButton button_viewHistory;
+    private javax.swing.JLabel jLabel4;
     private static javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -434,6 +610,7 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JDialog jdialog_acceptJob;
     private javax.swing.JLabel label_address;
     private javax.swing.JLabel label_addressTitle;
     private javax.swing.JLabel label_companyIDTitle;
