@@ -5,22 +5,32 @@
 package com.assignment.assignment5009cem;
 
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author User
  */
-public class adminDashboardUI extends javax.swing.JFrame {
-
+public class AdminDashboardUI extends javax.swing.JFrame {
+    
+    long companyID = 0;
+    
     /**
      * Creates new form adminDashboardUI
      */
-    public adminDashboardUI() {
+    public AdminDashboardUI() {
         initComponents();
         this.pack();
         this.setLocationRelativeTo(null);  
-        jLabel1.setFont(new Font("Serif", Font.BOLD, 20));
+        label_adminDashboardTitle.setFont(new Font("Serif", Font.BOLD, 20));
+        jLayeredPane1.setVisible(false);
     }
 
     /**
@@ -32,31 +42,264 @@ public class adminDashboardUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jdialog_addEmergencyServices = new javax.swing.JDialog();
+        label_servicesTitle = new javax.swing.JLabel();
+        label_typeOfServicesTitle = new javax.swing.JLabel();
+        label_descriptionTitle = new javax.swing.JLabel();
+        comboBox_emergencyType = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textArea_description = new javax.swing.JTextArea();
+        button_submit = new javax.swing.JButton();
+        jdialog_verifyCompany = new javax.swing.JDialog();
+        jLabel4 = new javax.swing.JLabel();
+        button_verify = new javax.swing.JButton();
+        button_cancel = new javax.swing.JButton();
+        jdialog_addBranch = new javax.swing.JDialog();
+        label_branchName = new javax.swing.JLabel();
+        label_branchAddress = new javax.swing.JLabel();
+        label_postalCodeTitle = new javax.swing.JLabel();
+        textField_branchName = new javax.swing.JTextField();
+        textField_branchAddress = new javax.swing.JTextField();
+        textField_postalCode = new javax.swing.JTextField();
+        label_addBranchTitle = new javax.swing.JLabel();
+        button_cancel1 = new javax.swing.JButton();
+        button_add = new javax.swing.JButton();
+        label_branchIDTitle = new javax.swing.JLabel();
+        textField_id = new javax.swing.JTextField();
+        label_contactNumberTitle = new javax.swing.JLabel();
+        textField_contactNumber = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        button_manageCompany = new javax.swing.JButton();
+        button_addEmergency = new javax.swing.JButton();
+        label_adminDashboardTitle = new javax.swing.JLabel();
+        button_viewCompany = new javax.swing.JButton();
+        button_viewERBranch = new javax.swing.JButton();
+        button_viewServices = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_manageCompany = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        table_allCompany = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        table_allService = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        table_allERBranch = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+
+        label_servicesTitle.setForeground(new java.awt.Color(64, 50, 184));
+        label_servicesTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_servicesTitle.setText("Emergency Services");
+
+        label_typeOfServicesTitle.setText("Types of services :");
+
+        label_descriptionTitle.setText("Description :");
+
+        comboBox_emergencyType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Police", "Hospital" }));
+
+        textArea_description.setColumns(20);
+        textArea_description.setRows(5);
+        jScrollPane3.setViewportView(textArea_description);
+
+        button_submit.setBackground(new java.awt.Color(64, 50, 184));
+        button_submit.setForeground(new java.awt.Color(255, 255, 255));
+        button_submit.setText("Submit >");
+        button_submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_submitActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jdialog_addEmergencyServicesLayout = new javax.swing.GroupLayout(jdialog_addEmergencyServices.getContentPane());
+        jdialog_addEmergencyServices.getContentPane().setLayout(jdialog_addEmergencyServicesLayout);
+        jdialog_addEmergencyServicesLayout.setHorizontalGroup(
+            jdialog_addEmergencyServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdialog_addEmergencyServicesLayout.createSequentialGroup()
+                .addGroup(jdialog_addEmergencyServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jdialog_addEmergencyServicesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(label_servicesTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 744, Short.MAX_VALUE))
+                    .addGroup(jdialog_addEmergencyServicesLayout.createSequentialGroup()
+                        .addGroup(jdialog_addEmergencyServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jdialog_addEmergencyServicesLayout.createSequentialGroup()
+                                .addGap(128, 128, 128)
+                                .addGroup(jdialog_addEmergencyServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(label_typeOfServicesTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label_descriptionTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jdialog_addEmergencyServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboBox_emergencyType, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jdialog_addEmergencyServicesLayout.createSequentialGroup()
+                                .addGap(323, 323, 323)
+                                .addComponent(button_submit, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jdialog_addEmergencyServicesLayout.setVerticalGroup(
+            jdialog_addEmergencyServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdialog_addEmergencyServicesLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(label_servicesTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(jdialog_addEmergencyServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_typeOfServicesTitle)
+                    .addComponent(comboBox_emergencyType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(jdialog_addEmergencyServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_descriptionTitle))
+                .addGap(18, 18, 18)
+                .addComponent(button_submit, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
+        );
+
+        jdialog_verifyCompany.setSize(new java.awt.Dimension(540, 400));
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Verify Company and Create A Profile Into The System ?");
+
+        button_verify.setText("Verify");
+        button_verify.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_verifyActionPerformed(evt);
+            }
+        });
+
+        button_cancel.setText("Cancel");
+        button_cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_cancelActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jdialog_verifyCompanyLayout = new javax.swing.GroupLayout(jdialog_verifyCompany.getContentPane());
+        jdialog_verifyCompany.getContentPane().setLayout(jdialog_verifyCompanyLayout);
+        jdialog_verifyCompanyLayout.setHorizontalGroup(
+            jdialog_verifyCompanyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdialog_verifyCompanyLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jdialog_verifyCompanyLayout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(button_verify, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addComponent(button_cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
+        );
+        jdialog_verifyCompanyLayout.setVerticalGroup(
+            jdialog_verifyCompanyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdialog_verifyCompanyLayout.createSequentialGroup()
+                .addContainerGap(100, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(56, 56, 56)
+                .addGroup(jdialog_verifyCompanyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(button_verify)
+                    .addComponent(button_cancel))
+                .addGap(133, 133, 133))
+        );
+
+        label_branchName.setText("Branch Name:");
+
+        label_branchAddress.setText("Branch Address: ");
+
+        label_postalCodeTitle.setText("Postal Code");
+
+        label_addBranchTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_addBranchTitle.setText("Register Branch");
+
+        button_cancel1.setBackground(new java.awt.Color(0, 51, 204));
+        button_cancel1.setForeground(new java.awt.Color(255, 255, 255));
+        button_cancel1.setText("Cancel");
+        button_cancel1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_cancel1ActionPerformed(evt);
+            }
+        });
+
+        button_add.setBackground(new java.awt.Color(0, 51, 204));
+        button_add.setForeground(new java.awt.Color(255, 255, 255));
+        button_add.setText("Add");
+        button_add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_addActionPerformed(evt);
+            }
+        });
+
+        label_branchIDTitle.setText("Branch ID:");
+
+        label_contactNumberTitle.setText("Contact Number");
+
+        javax.swing.GroupLayout jdialog_addBranchLayout = new javax.swing.GroupLayout(jdialog_addBranch.getContentPane());
+        jdialog_addBranch.getContentPane().setLayout(jdialog_addBranchLayout);
+        jdialog_addBranchLayout.setHorizontalGroup(
+            jdialog_addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdialog_addBranchLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_addBranchTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jdialog_addBranchLayout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addGroup(jdialog_addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdialog_addBranchLayout.createSequentialGroup()
+                        .addComponent(button_cancel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(button_add))
+                    .addGroup(jdialog_addBranchLayout.createSequentialGroup()
+                        .addGroup(jdialog_addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jdialog_addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(label_postalCodeTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label_branchName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label_branchAddress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label_contactNumberTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(label_branchIDTitle))
+                        .addGap(78, 78, 78)
+                        .addGroup(jdialog_addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(textField_id)
+                            .addComponent(textField_branchName)
+                            .addComponent(textField_branchAddress)
+                            .addComponent(textField_postalCode)
+                            .addComponent(textField_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jdialog_addBranchLayout.setVerticalGroup(
+            jdialog_addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdialog_addBranchLayout.createSequentialGroup()
+                .addGap(97, 97, 97)
+                .addComponent(label_addBranchTitle)
+                .addGap(42, 42, 42)
+                .addGroup(jdialog_addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_branchIDTitle)
+                    .addComponent(textField_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jdialog_addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_branchName)
+                    .addComponent(textField_branchName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jdialog_addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_branchAddress)
+                    .addComponent(textField_branchAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jdialog_addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_postalCodeTitle)
+                    .addComponent(textField_postalCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jdialog_addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_contactNumberTitle)
+                    .addComponent(textField_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(58, 58, 58)
+                .addGroup(jdialog_addBranchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(button_cancel1)
+                    .addComponent(button_add))
+                .addContainerGap(65, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(980, 560));
@@ -66,30 +309,44 @@ public class adminDashboardUI extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 200));
         jPanel1.setRequestFocusEnabled(false);
 
-        jButton1.setText("Manage Companies");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        button_manageCompany.setText("Manage Companies");
+        button_manageCompany.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        button_manageCompany.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                button_manageCompanyActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Manage Branches");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        button_addEmergency.setText("Add Emergency Services");
+        button_addEmergency.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                button_addEmergencyActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Generate Report");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        label_adminDashboardTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_adminDashboardTitle.setText("Welcome To The Admin Dashboard");
+
+        button_viewCompany.setText("View All Company");
+        button_viewCompany.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                button_viewCompanyActionPerformed(evt);
             }
         });
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Welcome To The Admin Dashboard");
+        button_viewERBranch.setText("View EmergencyBranch");
+        button_viewERBranch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_viewERBranchActionPerformed(evt);
+            }
+        });
+
+        button_viewServices.setText("View All Services");
+        button_viewServices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_viewServicesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -97,89 +354,96 @@ public class adminDashboardUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(label_adminDashboardTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(button_manageCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(button_addEmergency, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(button_viewCompany)
+                .addGap(18, 18, 18)
+                .addComponent(button_viewERBranch)
+                .addGap(18, 18, 18)
+                .addComponent(button_viewServices)
+                .addGap(77, 77, 77))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addGap(64, 64, 64)
+                .addComponent(label_adminDashboardTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(button_manageCompany)
+                    .addComponent(button_addEmergency)
+                    .addComponent(button_viewCompany)
+                    .addComponent(button_viewERBranch)
+                    .addComponent(button_viewServices))
+                .addGap(40, 40, 40))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 18, 600, 150));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 18, 960, 150));
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
         jPanel2.setPreferredSize(new java.awt.Dimension(970, 450));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_manageCompany.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Company ID", "Company Name", "Subscription Status"
+                "Company ID", "Company Name", "Company Address", "Postal Code", "Subscription Duration", "Approval Status", "Services Provided", "Description"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jTable1.setMinimumSize(new java.awt.Dimension(90, 300));
-        jTable1.setPreferredSize(new java.awt.Dimension(450, 300));
-        jScrollPane1.setViewportView(jTable1);
+        table_manageCompany.setMinimumSize(new java.awt.Dimension(90, 300));
+        table_manageCompany.setPreferredSize(new java.awt.Dimension(450, 300));
+        table_manageCompany.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                table_manageCompanyMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table_manageCompany);
+        if (table_manageCompany.getColumnModel().getColumnCount() > 0) {
+            table_manageCompany.getColumnModel().getColumn(0).setResizable(false);
+            table_manageCompany.getColumnModel().getColumn(1).setResizable(false);
+            table_manageCompany.getColumnModel().getColumn(2).setResizable(false);
+            table_manageCompany.getColumnModel().getColumn(3).setResizable(false);
+            table_manageCompany.getColumnModel().getColumn(4).setResizable(false);
+            table_manageCompany.getColumnModel().getColumn(5).setResizable(false);
+            table_manageCompany.getColumnModel().getColumn(6).setResizable(false);
+            table_manageCompany.getColumnModel().getColumn(7).setResizable(false);
+        }
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Manage Companies");
-
-        jButton5.setText("View Details");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 874, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 958, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,12 +451,8 @@ public class adminDashboardUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(jButton5)))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(jPanel2, "card2");
@@ -201,7 +461,156 @@ public class adminDashboardUI extends javax.swing.JFrame {
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(452, 300));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        table_allCompany.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Company ID", "Company Name", "Company Address", "Postal Code", "Contact Number", "Sub Date", "Sub Duration"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        table_allCompany.setMinimumSize(new java.awt.Dimension(90, 250));
+        table_allCompany.setPreferredSize(new java.awt.Dimension(450, 250));
+        jScrollPane2.setViewportView(table_allCompany);
+        if (table_allCompany.getColumnModel().getColumnCount() > 0) {
+            table_allCompany.getColumnModel().getColumn(0).setResizable(false);
+            table_allCompany.getColumnModel().getColumn(1).setResizable(false);
+            table_allCompany.getColumnModel().getColumn(2).setResizable(false);
+            table_allCompany.getColumnModel().getColumn(3).setResizable(false);
+            table_allCompany.getColumnModel().getColumn(4).setResizable(false);
+            table_allCompany.getColumnModel().getColumn(5).setResizable(false);
+            table_allCompany.getColumnModel().getColumn(5).setHeaderValue("Sub Date");
+            table_allCompany.getColumnModel().getColumn(6).setResizable(false);
+            table_allCompany.getColumnModel().getColumn(6).setHeaderValue("Sub Duration");
+        }
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("All Company In System");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE)
+                        .addContainerGap())))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(jPanel3, "card3");
+
+        jPanel4.setPreferredSize(new java.awt.Dimension(970, 450));
+
+        jScrollPane4.setPreferredSize(new java.awt.Dimension(452, 300));
+
+        table_allService.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Service ID", "Provider ID", "Provider Name", "Service Type", "Service Description", "Postal Code"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        table_allService.setMinimumSize(new java.awt.Dimension(90, 250));
+        table_allService.setPreferredSize(new java.awt.Dimension(450, 250));
+        jScrollPane4.setViewportView(table_allService);
+        if (table_allService.getColumnModel().getColumnCount() > 0) {
+            table_allService.getColumnModel().getColumn(0).setResizable(false);
+            table_allService.getColumnModel().getColumn(1).setResizable(false);
+            table_allService.getColumnModel().getColumn(2).setResizable(false);
+            table_allService.getColumnModel().getColumn(3).setResizable(false);
+            table_allService.getColumnModel().getColumn(4).setResizable(false);
+            table_allService.getColumnModel().getColumn(5).setResizable(false);
+        }
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("All Services In The System");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jLayeredPane1.add(jPanel4, "card3");
+
+        jPanel5.setPreferredSize(new java.awt.Dimension(970, 450));
+
+        jScrollPane5.setPreferredSize(new java.awt.Dimension(452, 300));
+
+        table_allERBranch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -220,156 +629,334 @@ public class adminDashboardUI extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Branch Name", "Branch Address", "Postal Code", "Contact Number"
+                "Branch ID", "Branch Name", "Branch Address", "Postal Code", "Contact Number"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-        });
-        jTable2.setMinimumSize(new java.awt.Dimension(90, 250));
-        jTable2.setPreferredSize(new java.awt.Dimension(450, 250));
-        jScrollPane2.setViewportView(jTable2);
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Manage Branches");
-
-        jButton4.setText("Add Branch");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        table_allERBranch.setMinimumSize(new java.awt.Dimension(90, 250));
+        table_allERBranch.setPreferredSize(new java.awt.Dimension(450, 250));
+        jScrollPane5.setViewportView(table_allERBranch);
+        if (table_allERBranch.getColumnModel().getColumnCount() > 0) {
+            table_allERBranch.getColumnModel().getColumn(0).setResizable(false);
+            table_allERBranch.getColumnModel().getColumn(1).setResizable(false);
+            table_allERBranch.getColumnModel().getColumn(2).setResizable(false);
+            table_allERBranch.getColumnModel().getColumn(3).setResizable(false);
+            table_allERBranch.getColumnModel().getColumn(4).setResizable(false);
+        }
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("All Emergency Branch In The System");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jButton4)))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
-
-        jLayeredPane1.add(jPanel3, "card3");
-
-        jLabel4.setText("Company ID:");
-
-        jLabel5.setText("Company Name: ");
-
-        jLabel6.setText("Address:");
-
-        jLabel7.setText("Postal Code:");
-
-        jLabel8.setText("Contact Number: ");
-
-        jLabel9.setText("Subscription Date: ");
-
-        jLabel10.setText("Subscription Duration: ");
-
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Company Profile");
-        jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(791, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel11)
-                .addGap(33, 33, 33)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel10)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLayeredPane1.add(jPanel4, "card4");
+        jLayeredPane1.add(jPanel5, "card3");
 
         getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 970, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void button_manageCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_manageCompanyActionPerformed
+        
+        Connection conDB = null;
+        long companyID = 0;
+        String companyName = "";
+        String companyAddress = "";
+        int postalCode = 0;
+        String subDuration = "";
+        String status = "";
+        String serviceProvided = "";
+        String description = "";
+        
+        
+        try{
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+            Statement stmt2 = conDB.createStatement();
+
+            
+            //code for read operation
+            String query = "SELECT * from company WHERE status = '" +"Pending"+ "'";
+            String query2= "SELECT * from services WHERE status = '" +"Pending"+ "'";
+            ResultSet rs = stmt.executeQuery(query);
+            
+            ResultSet rs2 = stmt2.executeQuery(query2);
+
+            DefaultTableModel model = (DefaultTableModel) table_manageCompany.getModel();
+            model.setRowCount(0);
+            
+            while(rs.next() && rs2.next()){
+                
+                   companyID =(Long.parseLong(rs.getString("companyID")));
+                   companyName = rs.getString("companyName");
+                   companyAddress = rs.getString("companyAddress");
+                   postalCode = (Integer.parseInt(rs.getString("postalCode")));
+                   subDuration = rs.getString("subscriptionDuration");
+                   status = rs.getString("status");
+                   serviceProvided = rs2.getString("serviceType");
+                   description = rs2.getString("serviceDescription");
+                   
+                   Object[] row = {companyID,companyName,companyAddress,postalCode,subDuration,status,serviceProvided,description};
+                   model.addRow(row); 
+            }
+            
+        }
+        catch(SQLException exception){
+            
+            System.out.print(exception.getMessage());
+        }
+        
         jLayeredPane1.setVisible(true);
         switchPanel(jPanel2);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_button_manageCompanyActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //jLayeredPane1.setVisible(true);
+    private void button_addEmergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_addEmergencyActionPerformed
+
+        jdialog_addBranch.setVisible(true);
+        jdialog_addBranch.pack();
+        jdialog_addBranch.setLocationRelativeTo(null);
+
+    }//GEN-LAST:event_button_addEmergencyActionPerformed
+
+    private void table_manageCompanyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_manageCompanyMouseClicked
+
+        int index = table_manageCompany.getSelectedRow();
+        TableModel model = table_manageCompany.getModel();
+        
+        companyID = (Long.parseLong(model.getValueAt(index, 0).toString()));
+        
+        jdialog_verifyCompany.setVisible(true);
+        jdialog_verifyCompany.pack();
+        jdialog_verifyCompany.setLocationRelativeTo(null);
+        
+    }//GEN-LAST:event_table_manageCompanyMouseClicked
+
+    private void button_verifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_verifyActionPerformed
+        
+        Connection conDB = null;
+       
+        try{
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+            Statement stmt2 = conDB.createStatement();
+            
+
+            stmt.executeUpdate("update company set status = '"+"Approved"+"' where companyID = '"+companyID+"'");
+            stmt2.executeUpdate("update services set status = '"+"Approved"+"' where providerID = '"+companyID+"'");
+
+            
+        }
+        catch(SQLException exception){
+            
+            System.out.print(exception.getMessage());
+        }
+        
+        jdialog_verifyCompany.dispose();
+       
+    }//GEN-LAST:event_button_verifyActionPerformed
+
+    private void button_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_cancelActionPerformed
+        jdialog_verifyCompany.dispose();
+    }//GEN-LAST:event_button_cancelActionPerformed
+
+    private void button_cancel1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_cancel1ActionPerformed
+        AdminDashboardUI itemloader = new AdminDashboardUI();
+        itemloader.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_button_cancel1ActionPerformed
+
+    private void button_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_addActionPerformed
+        
+        EmergencyBranch erbranchEntity = EmergencyBranch.getInstance();
+        
+        long branchID = (Long.parseLong(textField_id.getText()));
+        String branchName = textField_branchName.getText();
+        String branchAddress = textField_branchAddress.getText();
+        int postalCode = (Integer.parseInt(textField_postalCode.getText()));
+        String contactNumber = textField_contactNumber.getText();
+        
+        
+        erbranchEntity.setBranchID(branchID);
+        erbranchEntity.setBranchName(branchName);
+        erbranchEntity.setBranchAddress(branchAddress);
+        erbranchEntity.setPostalCode(postalCode);
+        erbranchEntity.setContactNumber(contactNumber);
+        
+        jdialog_addBranch.dispose();
+        jdialog_addEmergencyServices.setVisible(true);
+        jdialog_addEmergencyServices.pack();
+        jdialog_addEmergencyServices.setLocationRelativeTo(null);
+
+    }//GEN-LAST:event_button_addActionPerformed
+
+    private void button_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_submitActionPerformed
+
+    EmergencyBranch erbranchEntity = EmergencyBranch.getInstance();
+
+    String serviceType = (comboBox_emergencyType.getSelectedItem().toString());
+    String description = textArea_description.getText();
+
+    try{
+            
+            Connection conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+
+            /**code for insert operation. Here we insert into two table, first is company table second is services table
+             * the company table will store the company data while the services will store all the services data provided by that company
+             */
+            stmt.executeUpdate("INSERT INTO emergencybranch (branchID, branchName,branchAddress,branchPostalCode,contactNumber) "
+                    + "VALUES ('"+erbranchEntity.getBranchID()+"','"+erbranchEntity.getBranchName()+"','"+erbranchEntity.getBranchAddress()+"',"
+                            + "'"+erbranchEntity.getPostalCode()+"','"+erbranchEntity.getContactNumber()+"')");
+            
+            
+            stmt.executeUpdate("INSERT INTO services (providerID, providerName,serviceType,serviceDescription,postalCode,status)"
+                    + "VALUES ('"+erbranchEntity.getBranchID()+"','"+erbranchEntity.getBranchName()+"','"+serviceType+"',"
+                            + "'"+description+"','"+erbranchEntity.getPostalCode()+"','"+"Approved"+"')");
+            
+        }
+        catch(SQLException exception){
+            label_servicesTitle.setText("Connection Error. Unable To Register");
+            //registerStatus = false;
+        }
+    
+        jdialog_addEmergencyServices.dispose();
+    
+    }//GEN-LAST:event_button_submitActionPerformed
+
+    private void button_viewCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_viewCompanyActionPerformed
+        
+        Connection conDB = null;
+
+        try{
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+
+            
+            //code for read operation
+            String query = "SELECT * from company";
+            ResultSet rs = stmt.executeQuery(query);
+            
+            DefaultTableModel model = (DefaultTableModel) table_allCompany.getModel();
+            model.setRowCount(0);
+            
+            while(rs.next()){
+                   Object[] row = {(Long.parseLong(rs.getString("companyID"))),rs.getString("companyName"),rs.getString("companyAddress"),
+                       (Integer.parseInt(rs.getString("postalCode"))), rs.getString("contactNumber"),
+                       rs.getString("subscriptionDate"),rs.getString("subscriptionDuration")};
+                   model.addRow(row); 
+            }
+            
+        }
+        catch(SQLException exception){
+            
+            System.out.print(exception.getMessage());
+        }
+        
+        jLayeredPane1.setVisible(true);
         switchPanel(jPanel3);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_button_viewCompanyActionPerformed
+
+    private void button_viewERBranchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_viewERBranchActionPerformed
+
+        Connection conDB = null;
+
+        try{
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+
+            
+            //code for read operation
+            String query = "SELECT * from emergencybranch";
+            ResultSet rs = stmt.executeQuery(query);
+            
+            DefaultTableModel model = (DefaultTableModel) table_allERBranch.getModel();
+            model.setRowCount(0);
+            
+            while(rs.next()){
+                   Object[] row = {rs.getString("branchID"),rs.getString("branchName"),rs.getString("branchAddress"),
+                       (Integer.parseInt(rs.getString("branchPostalCode"))), rs.getString("contactNumber")};
+                   model.addRow(row); 
+            }
+            
+        }
+        catch(SQLException exception){
+            
+            System.out.print(exception.getMessage());
+        }
+
+        jLayeredPane1.setVisible(true);
+        switchPanel(jPanel5);
+
+    }//GEN-LAST:event_button_viewERBranchActionPerformed
+
+    private void button_viewServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_viewServicesActionPerformed
+
+        Connection conDB = null;
+
+        try{
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+
+            
+            //code for read operation
+            String query = "SELECT * from services";
+            ResultSet rs = stmt.executeQuery(query);
+            
+            DefaultTableModel model = (DefaultTableModel) table_allService.getModel();
+            model.setRowCount(0);
+            
+            while(rs.next()){
+                   Object[] row = {(Integer.parseInt(rs.getString("serviceID"))),(Long.parseLong(rs.getString("providerID"))),
+                       rs.getString("providerName"),rs.getString("serviceType"), rs.getString("serviceDescription"),
+                       (Integer.parseInt(rs.getString("postalCode")))};
+                   model.addRow(row); 
+            }
+            
+        }
+        catch(SQLException exception){
+            
+            System.out.print(exception.getMessage());
+        }
+
         jLayeredPane1.setVisible(true);
         switchPanel(jPanel4);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        AddBranchUI itemloader = new AddBranchUI();
-        itemloader.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        companyDetailsUI itemloader = new companyDetailsUI();
-        itemloader.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_button_viewServicesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -388,25 +975,25 @@ public class adminDashboardUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(adminDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(adminDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(adminDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(adminDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminDashboardUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new adminDashboardUI().setVisible(true);
+                new AdminDashboardUI().setVisible(true);
                 jLayeredPane1.setVisible(false);
                
                 jLabel3.setFont(new Font("Serif", Font.BOLD, 20));
                 jLabel2.setFont(new Font("Serif", Font.BOLD, 20));
-                jLabel11.setFont(new Font("Serif", Font.BOLD, 20));
             }
         });
     }
@@ -420,30 +1007,55 @@ public class adminDashboardUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private static javax.swing.JLabel jLabel11;
+    private javax.swing.JButton button_add;
+    private javax.swing.JButton button_addEmergency;
+    private javax.swing.JButton button_cancel;
+    private javax.swing.JButton button_cancel1;
+    private static javax.swing.JButton button_manageCompany;
+    private static javax.swing.JButton button_submit;
+    private javax.swing.JButton button_verify;
+    private javax.swing.JButton button_viewCompany;
+    private javax.swing.JButton button_viewERBranch;
+    private javax.swing.JButton button_viewServices;
+    private static javax.swing.JComboBox<String> comboBox_emergencyType;
     private static javax.swing.JLabel jLabel2;
     private static javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private static javax.swing.JLabel jLabel5;
+    private static javax.swing.JLabel jLabel6;
     private static javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JDialog jdialog_addBranch;
+    private javax.swing.JDialog jdialog_addEmergencyServices;
+    private javax.swing.JDialog jdialog_verifyCompany;
+    private javax.swing.JLabel label_addBranchTitle;
+    private javax.swing.JLabel label_adminDashboardTitle;
+    private static javax.swing.JLabel label_branchAddress;
+    private javax.swing.JLabel label_branchIDTitle;
+    private static javax.swing.JLabel label_branchName;
+    private static javax.swing.JLabel label_contactNumberTitle;
+    private static javax.swing.JLabel label_descriptionTitle;
+    private static javax.swing.JLabel label_postalCodeTitle;
+    private static javax.swing.JLabel label_servicesTitle;
+    private javax.swing.JLabel label_typeOfServicesTitle;
+    private javax.swing.JTable table_allCompany;
+    private javax.swing.JTable table_allERBranch;
+    private javax.swing.JTable table_allService;
+    private javax.swing.JTable table_manageCompany;
+    private static javax.swing.JTextArea textArea_description;
+    private static javax.swing.JTextField textField_branchAddress;
+    private static javax.swing.JTextField textField_branchName;
+    private static javax.swing.JTextField textField_contactNumber;
+    private javax.swing.JTextField textField_id;
+    private static javax.swing.JTextField textField_postalCode;
     // End of variables declaration//GEN-END:variables
 }
