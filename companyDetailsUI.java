@@ -125,7 +125,7 @@ public class companyDetailsUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        adminDashboardUI itemloader = new adminDashboardUI();
+        AdminDashboardUI itemloader = new AdminDashboardUI();
         itemloader.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
