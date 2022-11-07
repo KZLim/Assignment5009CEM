@@ -489,6 +489,55 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
     }//GEN-LAST:event_button_helpRequestActionPerformed
         
     private void button_viewHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_viewHistoryActionPerformed
+        
+        Connection conDB = null;
+        int orderID = 0;
+        String userID = "";
+        String userName = "";
+        String serviceType = "";
+        String description = "";
+        String location = "";
+        String status = "";
+        String feedback = "";
+        
+        Company companyEntity = Company.getInstance();
+        
+        
+        try{
+            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+            Statement stmt = conDB.createStatement();
+            
+            //code for read operation
+            String query = "SELECT * from request WHERE providerID = '" +companyEntity.getCompanyID()+ "'";
+            ResultSet rs = stmt.executeQuery(query);
+            
+            DefaultTableModel model = (DefaultTableModel) table_viewHistory.getModel();
+            model.setRowCount(0);
+            
+            while(rs.next()){
+                
+               if(rs.getString("status").equals("Done")){
+                   
+                   orderID =(Integer.parseInt(rs.getString("requestID")));
+                   userID = rs.getString("userID");
+                   userName = rs.getString("username");
+                   serviceType = rs.getString("serviceType");
+                   location = rs.getString("location");
+                   status = rs.getString("status");
+                   feedback = rs.getString("feedback");
+                   
+                   
+                   Object[] row = {orderID,userID,userName,serviceType,location,status,feedback};
+                   model.addRow(row); 
+                }
+            }
+        }
+        catch(SQLException exception){
+            
+            System.out.print(exception.getMessage());
+        }
+        
+        
         jLayeredPane1.setVisible(true);
         switchPanel(jPanel3);
     }//GEN-LAST:event_button_viewHistoryActionPerformed
@@ -534,7 +583,7 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
             conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
             Statement stmt = conDB.createStatement();
 
-            //code for insert operation
+            //code for update operation
             stmt.executeUpdate("update request set status = '"+newStatus+"' where requestID = '"+requestID+"'");
 
         }

@@ -257,65 +257,103 @@ public class LoginUI extends javax.swing.JFrame {
         else if(userType.equals("Provider")){
             
             //declaration and initialization 
-            long userID = 0;
+            String userID = "";
             String password="";
             boolean loginStatus = false;  //the login state. True is go, false is no go. Default at false
             
             //to catch the error when user input nothing and press login.
             try{
-                userID  = Long.parseLong(textField_userID.getText());
+                userID  = textField_userID.getText();
                 password = textField_password.getText();
             }
             catch(NumberFormatException e){
                 System.out.println(e);
             }
             
-            
-            //connecting to db and get the data necessary and check against user input
-            try{
+
+            if(userID.substring(0,1).equals("A")){
+                
+                try{
                     Connection conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");  //db connection
 
-                    String query = "SELECT * from company Where companyID = '" + userID + "'";  //sql query
+                    String query = "SELECT * from admin Where adminID = '" + userID + "'";  //sql query
                     Statement stmt = conDB.createStatement();  
                     ResultSet rs = stmt.executeQuery(query);
                     
                     //check against user after reading it from the database
                     while(rs.next()){
                         //if correct id and password, will go into here can change the login state to true
-                        if(textField_userID.getText().equals(rs.getString("companyID")) && password.equals(rs.getString("password"))){
+                        if(textField_userID.getText().equals(rs.getString("adminID")) && password.equals(rs.getString("adminPassword"))){
                             loginStatus = true;
                             
-                            //once the credentials is true set the entire company class to make sure the data is ready to be use
-                            Company companyEntity = Company.getInstance();
-                            companyEntity.setCompanyID(userID);
-                            companyEntity.setCompanyName(rs.getString("companyName"));
-                            companyEntity.setCompanyAddress(rs.getString("companyAddress"));
-                            companyEntity.setPostalCode(Integer.parseInt(rs.getString("postalCode")));
-                            companyEntity.setStatus("status");
-                            companyEntity.setContactNumber(rs.getString("contactNumber"));
-                            companyEntity.setSubscriptionDate(rs.getString("subscriptionDate"));
-                            companyEntity.setSubscriptionDuration(rs.getString("subscriptionDuration"));
                         }
                     }
 
-            }
-            catch(SQLException exception){  //catch any sql/db error
+                }
+                catch(SQLException exception){  //catch any sql/db error
 
-                System.out.println(exception);
+                    System.out.println(exception);
+
+                }
+                
+                if(loginStatus == true){
+                    AdminDashboardUI itemloader = new AdminDashboardUI();
+                    itemloader.setVisible(true);
+                    dispose();
+                }
+                else{
+                    label_loginTitle.setText("Wrong Credentials. Check your User ID and Password");
+                }
                 
             }
-            
-            //if state is true then wil direct to dashboard
-            if(loginStatus == true){
-                CompanyDashboardUI itemloader = new CompanyDashboardUI();
-                itemloader.setVisible(true);
-                dispose();
-            }
             else{
-                label_loginTitle.setText("Wrong Credentials. Check your User ID and Password");
+                
+                long userIDlong  = (Long.parseLong(textField_userID.getText()));
+                //connecting to db and get the data necessary and check against user input
+                try{
+                        Connection conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");  //db connection
+
+                        String query = "SELECT * from company Where companyID = '" + userIDlong + "'";  //sql query
+                        Statement stmt = conDB.createStatement();  
+                        ResultSet rs = stmt.executeQuery(query);
+
+                        //check against user after reading it from the database
+                        while(rs.next()){
+                            //if correct id and password, will go into here can change the login state to true
+                            if(textField_userID.getText().equals(rs.getString("companyID")) && password.equals(rs.getString("password"))){
+                                loginStatus = true;
+
+                                //once the credentials is true set the entire company class to make sure the data is ready to be use
+                                Company companyEntity = Company.getInstance();
+                                companyEntity.setCompanyID(userIDlong);
+                                companyEntity.setCompanyName(rs.getString("companyName"));
+                                companyEntity.setCompanyAddress(rs.getString("companyAddress"));
+                                companyEntity.setPostalCode(Integer.parseInt(rs.getString("postalCode")));
+                                companyEntity.setStatus("status");
+                                companyEntity.setContactNumber(rs.getString("contactNumber"));
+                                companyEntity.setSubscriptionDate(rs.getString("subscriptionDate"));
+                                companyEntity.setSubscriptionDuration(rs.getString("subscriptionDuration"));
+                            }
+                        }
+
+                }
+                catch(SQLException exception){  //catch any sql/db error
+
+                    System.out.println(exception);
+
+                }
+
+                //if state is true then wil direct to dashboard
+                if(loginStatus == true){
+                    CompanyDashboardUI itemloader = new CompanyDashboardUI();
+                    itemloader.setVisible(true);
+                    dispose();
+                }
+                else{
+                    label_loginTitle.setText("Wrong Credentials. Check your User ID and Password");
+                }
             }
         }
-        
     }//GEN-LAST:event_button_loginActionPerformed
 
     private void button_userRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_userRegisterActionPerformed

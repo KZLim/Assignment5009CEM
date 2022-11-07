@@ -4,6 +4,7 @@
  */
 package com.assignment.assignment5009cem;
 
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -32,7 +33,13 @@ public class UserDashboardUI extends javax.swing.JFrame {
         getContentPane().setBackground(new java.awt.Color(255, 251,235));
         this.pack();
         this.setLocationRelativeTo(null);
-
+        label_userDashboardTitle.setFont(new Font("Serif", Font.BOLD, 20));
+        label_companyListTitle.setFont(new Font("Serif", Font.BOLD, 20));
+        label_helpRequestTitle.setFont(new Font("Serif", Font.BOLD,20));
+        label_myRequestTitle.setFont(new Font("Serif", Font.BOLD,20));
+        label_profileTitle.setFont(new Font("Serif",Font.BOLD,20));
+        label_areYouSureTitle.setFont(new Font("Serif",Font.BOLD,20));
+        label_completeRequestTitle.setFont(new Font("Serif",Font.BOLD,20));
     }
 
     /**
@@ -45,7 +52,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jdialog_requestConfirmation = new javax.swing.JDialog();
-        jLabel2 = new javax.swing.JLabel();
+        label_areYouSureTitle = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         button_confirm = new javax.swing.JButton();
         textField_address = new javax.swing.JTextField();
@@ -55,7 +62,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
         label_descriptionTitle = new javax.swing.JLabel();
         button_cancel = new javax.swing.JButton();
         jdialog_completeRequest = new javax.swing.JDialog();
-        jLabel4 = new javax.swing.JLabel();
+        label_completeRequestTitle = new javax.swing.JLabel();
         button_Done = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         textArea_feedback = new javax.swing.JTextArea();
@@ -72,7 +79,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table_companyList = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        label_helpRequestTitle = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         table_helpRequest = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -92,8 +99,8 @@ public class UserDashboardUI extends javax.swing.JFrame {
 
         jdialog_requestConfirmation.setSize(new java.awt.Dimension(540, 400));
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Are you sure you want to place this help Request ?");
+        label_areYouSureTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_areYouSureTitle.setText("Are you sure you want to place this Help Request ?");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Fill In The Necessary Details");
@@ -129,7 +136,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
                 .addGroup(jdialog_requestConfirmationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdialog_requestConfirmationLayout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label_areYouSureTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))))
             .addGroup(jdialog_requestConfirmationLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
@@ -156,7 +163,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
             jdialog_requestConfirmationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdialog_requestConfirmationLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel2)
+                .addComponent(label_areYouSureTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addGap(24, 24, 24)
@@ -176,8 +183,8 @@ public class UserDashboardUI extends javax.swing.JFrame {
 
         jdialog_completeRequest.setSize(new java.awt.Dimension(540, 400));
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Complete Request?");
+        label_completeRequestTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_completeRequestTitle.setText("Complete Request?");
 
         button_Done.setText("Done");
         button_Done.addActionListener(new java.awt.event.ActionListener() {
@@ -206,7 +213,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE)
                 .addGroup(jdialog_completeRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdialog_completeRequestLayout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label_completeRequestTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdialog_completeRequestLayout.createSequentialGroup()
                         .addComponent(button_Done, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -216,7 +223,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
             jdialog_completeRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdialog_completeRequestLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel4)
+                .addComponent(label_completeRequestTitle)
                 .addGap(49, 49, 49)
                 .addGroup(jdialog_completeRequestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label_feedbackTitle)
@@ -363,8 +370,8 @@ public class UserDashboardUI extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 251, 235));
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Help Request");
+        label_helpRequestTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_helpRequestTitle.setText("Help Request");
 
         table_helpRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -412,14 +419,14 @@ public class UserDashboardUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(label_helpRequestTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel1)
+                .addComponent(label_helpRequestTitle)
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
                 .addContainerGap())
@@ -507,6 +514,8 @@ public class UserDashboardUI extends javax.swing.JFrame {
 
         label_contactTitle.setText("Contact Number");
 
+        label_contact.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -515,43 +524,53 @@ public class UserDashboardUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(label_profileTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(215, 215, 215)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(label_idTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_nameTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_emailTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(318, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(label_nameTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_idTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_emailTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_contactTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(label_id, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(label_contact, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(label_name, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_id, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(label_email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(label_contact, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(272, 272, 272))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(46, 46, 46)
                 .addComponent(label_profileTitle)
-                .addGap(91, 91, 91)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_idTitle)
-                    .addComponent(label_id))
+                .addGap(52, 52, 52)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(label_idTitle))
+                            .addComponent(label_id, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(label_nameTitle))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(label_name, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_nameTitle)
-                    .addComponent(label_name))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label_emailTitle)
-                    .addComponent(label_email))
+                    .addComponent(label_email, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_contactTitle)
-                    .addComponent(label_contact))
-                .addGap(186, 186, 186))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(label_contactTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_contact, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(jPanel5, "card5");
@@ -741,9 +760,18 @@ public class UserDashboardUI extends javax.swing.JFrame {
             Statement stmt = conDB.createStatement();
 
             //code for insert operation
-            stmt.executeUpdate("INSERT INTO request (userID, userName,providerID,serviceType,description,status,location,feedback) "
+            
+            if(serviceType_ready.equals("Police") || serviceType_ready.equals("Hospital")){
+                stmt.executeUpdate("INSERT INTO request (userID, userName,providerID,serviceType,description,status,location,feedback) "
+                + "VALUES ('"+userEntity.getUserID()+"','"+userEntity.getUserName()+"','"+providerID_ready+"',"
+                + "'"+serviceType_ready+"','"+description+"','"+"ON THE WAY"+"','"+location+"','"+feedback+"')");
+            }else{
+                stmt.executeUpdate("INSERT INTO request (userID, userName,providerID,serviceType,description,status,location,feedback) "
                 + "VALUES ('"+userEntity.getUserID()+"','"+userEntity.getUserName()+"','"+providerID_ready+"',"
                 + "'"+serviceType_ready+"','"+description+"','"+"Pending"+"','"+location+"','"+feedback+"')");
+            }
+            
+            
         }
         catch(SQLException exception){
 
@@ -847,10 +875,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
     private javax.swing.JButton button_profile;
     private javax.swing.JButton button_viewCompanyList;
     private javax.swing.JButton button_viewMyRequest;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -865,13 +890,16 @@ public class UserDashboardUI extends javax.swing.JFrame {
     private javax.swing.JDialog jdialog_completeRequest;
     private javax.swing.JDialog jdialog_requestConfirmation;
     private javax.swing.JLabel label_adddressTitle;
+    private javax.swing.JLabel label_areYouSureTitle;
     private javax.swing.JLabel label_companyListTitle;
+    private javax.swing.JLabel label_completeRequestTitle;
     private javax.swing.JLabel label_contact;
     private javax.swing.JLabel label_contactTitle;
     private javax.swing.JLabel label_descriptionTitle;
     private javax.swing.JLabel label_email;
     private javax.swing.JLabel label_emailTitle;
     private javax.swing.JLabel label_feedbackTitle;
+    private javax.swing.JLabel label_helpRequestTitle;
     private javax.swing.JLabel label_id;
     private javax.swing.JLabel label_idTitle;
     private javax.swing.JLabel label_myRequestTitle;
