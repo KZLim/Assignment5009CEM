@@ -114,40 +114,37 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="274" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="448" max="-2" attributes="0"/>
-                          <Component id="label_registerTitle" min="-2" pref="101" max="-2" attributes="0"/>
+                          <Component id="button_goBack" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="button_register" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="274" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="label_userNameTitle" min="-2" max="-2" attributes="0"/>
-                                      <Component id="label_ICNumberTitle" min="-2" pref="104" max="-2" attributes="0"/>
-                                      <Component id="label_passwordTitle" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="label_emailTitle" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Component id="label_contactNumberTitle" min="-2" pref="104" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="textfield_ICNumber" alignment="0" pref="304" max="32767" attributes="0"/>
-                                      <Component id="textfield_username" alignment="0" pref="304" max="32767" attributes="0"/>
-                                      <Component id="textfield_email" alignment="0" pref="304" max="32767" attributes="0"/>
-                                      <Component id="textfield_contactNumber" alignment="0" pref="304" max="32767" attributes="0"/>
-                                      <Component id="passwordField_password" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
-                                  <Component id="button_register" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="175" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="label_userNameTitle" min="-2" max="-2" attributes="0"/>
+                              <Component id="label_ICNumberTitle" min="-2" pref="104" max="-2" attributes="0"/>
+                              <Component id="label_passwordTitle" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="label_emailTitle" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="label_contactNumberTitle" min="-2" pref="104" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="textfield_ICNumber" alignment="0" pref="304" max="32767" attributes="0"/>
+                              <Component id="textfield_username" alignment="0" pref="304" max="32767" attributes="0"/>
+                              <Component id="textfield_email" alignment="0" pref="304" max="32767" attributes="0"/>
+                              <Component id="textfield_contactNumber" alignment="0" pref="304" max="32767" attributes="0"/>
+                              <Component id="passwordField_password" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="277" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="label_registerTitle" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -184,9 +181,12 @@
                       <Component id="textfield_contactNumber" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="label_contactNumberTitle" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                  <Component id="button_register" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="160" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="button_register" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="button_goBack" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="169" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -194,6 +194,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="label_registerTitle">
           <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="User Registration"/>
           </Properties>
         </Component>
@@ -245,6 +246,20 @@
           </Events>
         </Component>
         <Component class="javax.swing.JPasswordField" name="passwordField_password">
+        </Component>
+        <Component class="javax.swing.JButton" name="button_goBack">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b8" green="32" red="40" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Go Back"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_goBackActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

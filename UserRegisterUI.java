@@ -4,6 +4,7 @@
  */
 package com.assignment.assignment5009cem;
 
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -22,6 +23,8 @@ public class UserRegisterUI extends javax.swing.JFrame {
         initComponents();
         this.pack();
         this.setLocationRelativeTo(null);
+        label_registerTitle.setFont(new Font("Serif", Font.BOLD, 20));
+
     }
 
     /**
@@ -50,6 +53,7 @@ public class UserRegisterUI extends javax.swing.JFrame {
         textfield_contactNumber = new javax.swing.JTextField();
         button_register = new javax.swing.JButton();
         passwordField_password = new javax.swing.JPasswordField();
+        button_goBack = new javax.swing.JButton();
 
         jdialog_registerComplete.setSize(new java.awt.Dimension(540, 400));
 
@@ -99,6 +103,7 @@ public class UserRegisterUI extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 251, 235));
         jPanel2.setPreferredSize(new java.awt.Dimension(1000, 600));
 
+        label_registerTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_registerTitle.setText("User Registration");
 
         label_ICNumberTitle.setText("IC Number");
@@ -120,37 +125,45 @@ public class UserRegisterUI extends javax.swing.JFrame {
             }
         });
 
+        button_goBack.setBackground(new java.awt.Color(64, 50, 184));
+        button_goBack.setForeground(new java.awt.Color(255, 255, 255));
+        button_goBack.setText("Go Back");
+        button_goBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_goBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(274, 274, 274)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(448, 448, 448)
-                        .addComponent(label_registerTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(button_goBack)
+                        .addGap(18, 18, 18)
+                        .addComponent(button_register))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(274, 274, 274)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(label_userNameTitle)
-                                    .addComponent(label_ICNumberTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label_passwordTitle)
-                                    .addComponent(label_emailTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label_contactNumberTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(41, 41, 41)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(textfield_ICNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                                    .addComponent(textfield_username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                                    .addComponent(textfield_email, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                                    .addComponent(textfield_contactNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                                    .addComponent(passwordField_password, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(189, 189, 189)
-                                .addComponent(button_register)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(label_userNameTitle)
+                            .addComponent(label_ICNumberTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_passwordTitle)
+                            .addComponent(label_emailTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(label_contactNumberTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(textfield_ICNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                            .addComponent(textfield_username, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                            .addComponent(textfield_email, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                            .addComponent(textfield_contactNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                            .addComponent(passwordField_password, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addContainerGap(277, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_registerTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,9 +192,11 @@ public class UserRegisterUI extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textfield_contactNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_contactNumberTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
-                .addComponent(button_register)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(button_register)
+                    .addComponent(button_goBack))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,40 +223,60 @@ public class UserRegisterUI extends javax.swing.JFrame {
         String email = textfield_email.getText();
         String contactNumber = textfield_contactNumber.getText();
         
-        
-        
-        Users userEntity = Users.getInstance();
-        userEntity.setUserID(userID);
-        userEntity.setUserName(userName);
-        userEntity.setPassword(password);
-        userEntity.setEmail(email);
-        userEntity.setContactNumber(contactNumber);
-        
-        try{
-            
-            Connection conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
-            Statement stmt = conDB.createStatement();
-
-            /**code for insert operation. Here we insert into two table, first is company table second is services table
-             * the company table will store the company data while the services will store all the services data provided by that company
-             */
-            stmt.executeUpdate("INSERT INTO users (userID, userName,password,email,contactNumber) "
-                    + "VALUES ('"+userEntity.getUserID()+"','"+userEntity.getUserName()+"','"+userEntity.getPassword()+"',"
-                            + "'"+userEntity.getEmail()+"','"+userEntity.getContactNumber()+"')");
-            
-            
-        }
-        catch(SQLException exception){
-            label_registerTitle.setText("Connection Error. Unable To Register");
+        if(userID.length() < 12 || userID.isEmpty()){
             registerStatus = false;   
+            label_registerTitle.setText("IC Number Invalid");
         }
+        else if (userName.isEmpty()){
+            registerStatus = false;   
+            label_registerTitle.setText("User Name Cannot Be Empty");
+        }
+        else if(password.length() < 12 || password.isEmpty()){
+            registerStatus = false;   
+            label_registerTitle.setText("Password Must Be 12 Characters and Cannot Be Empty");
+        }
+        else if(email.isEmpty()){
+            registerStatus = false;   
+            label_registerTitle.setText("Email Cannot Be Empty");
+        }
+        else if(contactNumber.isEmpty()){
+            registerStatus = false;
+            label_registerTitle.setText("Contact Number Cannot Be Empty");
+        }
+        else if(contactNumber.length()<10 || contactNumber.length()>11){
+            registerStatus = false;
+            label_registerTitle.setText("Contact Number Format Is Invalid");
+        }
+        
         
         if(registerStatus){
+            
+            Users userEntity = Users.getInstance();
+            userEntity.setUserID(userID);
+            userEntity.setUserName(userName);
+            userEntity.setPassword(password);
+            userEntity.setEmail(email);
+            userEntity.setContactNumber(contactNumber);
+        
+            try{
+                Connection conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+                Statement stmt = conDB.createStatement();
+
+                stmt.executeUpdate("INSERT INTO users (userID, userName,password,email,contactNumber) "
+                        + "VALUES ('"+userEntity.getUserID()+"','"+userEntity.getUserName()+"','"+userEntity.getPassword()+"',"
+                                + "'"+userEntity.getEmail()+"','"+userEntity.getContactNumber()+"')");
+
+
+            }
+            catch(SQLException exception){
+                System.out.println(exception);
+                registerStatus = false;   
+            }
+
             jdialog_registerComplete.pack();
             jdialog_registerComplete.setLocationRelativeTo(null);
             jdialog_registerComplete.show();
         }
-
     }//GEN-LAST:event_button_registerActionPerformed
 
     private void button_doneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_doneActionPerformed
@@ -250,6 +285,12 @@ public class UserRegisterUI extends javax.swing.JFrame {
         dispose();
         jdialog_registerComplete.dispose();
     }//GEN-LAST:event_button_doneActionPerformed
+
+    private void button_goBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_goBackActionPerformed
+        LoginUI itemloader = new LoginUI();
+        itemloader.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_button_goBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,6 +329,7 @@ public class UserRegisterUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button_done;
+    private javax.swing.JButton button_goBack;
     private javax.swing.JButton button_register;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

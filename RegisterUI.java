@@ -5,10 +5,6 @@
 package com.assignment.assignment5009cem;
 
 import java.awt.Font;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
-import java.sql.SQLException;
 
 
 
@@ -208,30 +204,48 @@ public class RegisterUI extends javax.swing.JFrame {
         
         //register status to check whether is allowed to register. Default at true 
         boolean registerStatus = true;
-        
+          
         //taking the input in the fields and set into a variable
-        long companyID = Long.parseLong(textField_registrationNumber.getText());
+        String companyID = textField_registrationNumber.getText();
         String companyName = textField_companyName.getText();
         String password = passwordField_password.getText();
         String companyAddress = textField_companyAddress.getText();
-        int postalCode = Integer.parseInt(textField_postalCode.getText());
+        String postalCode = textField_postalCode.getText();
         String contactNumber = textField_contactNumber.getText();
+        String confirmPassword = passwordField_confirmPassword.getText();
         
+  
         
         //validation for the input fields
-        if(String.valueOf(companyID).length() <12){
+        if(String.valueOf(companyID).length() <12 || String.valueOf(companyID).isEmpty()){
             registerStatus = false;
-            label_registerTitle.setText("Company REG Number is 12 Digit");
+            label_registerTitle.setText("Company REG Number Cannot Be Empty and Must Be 12 Digit");
         }
-        else if(password.length() <12){
+        else if(companyName.isEmpty()){
             registerStatus = false;
-            label_registerTitle.setText("Password Must Be 12 Digit");
+            label_registerTitle.setText("Company Name Cannot Be Empty");
         }
-        else if(String.valueOf(postalCode).length()<5 && String.valueOf(postalCode).length()>5){
+        else if(password.length() <12 || password.isEmpty()){
+            registerStatus = false;
+            label_registerTitle.setText("Password Must Be 12 Digit and Cannot Be Empty");
+        }
+        else if(!password.equals(confirmPassword)){
+            registerStatus = false;
+            label_registerTitle.setText("Password and Confirm Does Not Match");
+        }
+        else if(postalCode.isEmpty()){
+            registerStatus = false;
+            label_registerTitle.setText("Postal Code Cannot Be Empty");
+        }
+        else if(postalCode.length()<5 || postalCode.length()>5){
             registerStatus = false;
             label_registerTitle.setText("Postal Code Only Contains 5 Digit");
         }
-        else if(String.valueOf(contactNumber).length()<10 && String.valueOf(contactNumber).length()>11){
+        else if(contactNumber.isEmpty()){
+            registerStatus = false;
+            label_registerTitle.setText("Contact Number Cannot Be Empty");
+        }
+        else if(contactNumber.length()<10 || contactNumber.length()>11){
             registerStatus = false;
             label_registerTitle.setText("Contact Number Format Is Invalid");
         }
@@ -252,6 +266,7 @@ public class RegisterUI extends javax.swing.JFrame {
             itemloader.setVisible(true);
             dispose();
         }
+
     }//GEN-LAST:event_button_nextActionPerformed
 
     /**

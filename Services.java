@@ -15,22 +15,22 @@ public class Services {
     
     //variable declaration and initializzation
     int serviceID = 0;
-    long providerID = 0;
+    String providerID = "";
     String providerName = "";
     String serviceType = "";
     String serviceDescription = "";
-    int postalCode = 0;
+    String postalCode = "";
     String approvalStatus = "";
     
     //Constructor
     private Services(){
         
         serviceID = 0;
-        providerID = 0;
+        providerID = "";
         providerName = "";
         serviceType = "";
         serviceDescription = "";
-        postalCode = 0;
+        postalCode = "";
         approvalStatus = "";
   
     }
@@ -44,11 +44,11 @@ public class Services {
         this.serviceID = serviceID;
     }
 
-    public long getProviderID() {
+    public String getProviderID() {
         return providerID;
     }
 
-    public void setProviderID(long providerID) {
+    public void setProviderID(String providerID) {
         this.providerID = providerID;
     }
 
@@ -76,11 +76,11 @@ public class Services {
         this.serviceDescription = serviceDescription;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 

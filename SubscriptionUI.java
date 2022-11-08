@@ -35,7 +35,6 @@ public class SubscriptionUI extends javax.swing.JFrame {
         textField_expirationDate.setFont(new Font("Serif", Font.PLAIN, 14));
         textField_cardNumber.setFont(new Font("Serif", Font.PLAIN, 14));
         textField_cvc.setFont(new Font("Serif", Font.PLAIN, 14));
-        
     }
 
     /**

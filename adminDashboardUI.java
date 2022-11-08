@@ -20,7 +20,7 @@ import javax.swing.table.TableModel;
  */
 public class AdminDashboardUI extends javax.swing.JFrame {
     
-    long companyID = 0;
+    String companyID = "";
     
     /**
      * Creates new form adminDashboardUI
@@ -31,6 +31,12 @@ public class AdminDashboardUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);  
         label_adminDashboardTitle.setFont(new Font("Serif", Font.BOLD, 20));
         jLayeredPane1.setVisible(false);
+        getContentPane().setBackground(new java.awt.Color(255, 251,235));
+        jLabel2.setFont(new Font("Serif", Font.BOLD, 20));
+        jLabel3.setFont(new Font("Serif", Font.BOLD, 20));
+        jLabel4.setFont(new Font("Serif", Font.BOLD, 20));
+        jLabel5.setFont(new Font("Serif", Font.BOLD, 20));
+        jLabel6.setFont(new Font("Serif", Font.BOLD, 20));
     }
 
     /**
@@ -302,13 +308,17 @@ public class AdminDashboardUI extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(102, 255, 204));
         setMinimumSize(new java.awt.Dimension(980, 560));
         setSize(new java.awt.Dimension(1000, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(255, 251, 235));
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 200));
         jPanel1.setRequestFocusEnabled(false);
 
+        button_manageCompany.setBackground(new java.awt.Color(64, 50, 184));
+        button_manageCompany.setForeground(new java.awt.Color(255, 255, 255));
         button_manageCompany.setText("Manage Companies");
         button_manageCompany.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         button_manageCompany.addActionListener(new java.awt.event.ActionListener() {
@@ -317,6 +327,8 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             }
         });
 
+        button_addEmergency.setBackground(new java.awt.Color(64, 50, 184));
+        button_addEmergency.setForeground(new java.awt.Color(255, 255, 255));
         button_addEmergency.setText("Add Emergency Services");
         button_addEmergency.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,6 +339,8 @@ public class AdminDashboardUI extends javax.swing.JFrame {
         label_adminDashboardTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_adminDashboardTitle.setText("Welcome To The Admin Dashboard");
 
+        button_viewCompany.setBackground(new java.awt.Color(64, 50, 184));
+        button_viewCompany.setForeground(new java.awt.Color(255, 255, 255));
         button_viewCompany.setText("View All Company");
         button_viewCompany.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -334,6 +348,8 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             }
         });
 
+        button_viewERBranch.setBackground(new java.awt.Color(64, 50, 184));
+        button_viewERBranch.setForeground(new java.awt.Color(255, 255, 255));
         button_viewERBranch.setText("View EmergencyBranch");
         button_viewERBranch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,6 +357,8 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             }
         });
 
+        button_viewServices.setBackground(new java.awt.Color(64, 50, 184));
+        button_viewServices.setForeground(new java.awt.Color(255, 255, 255));
         button_viewServices.setText("View All Services");
         button_viewServices.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -354,7 +372,7 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_adminDashboardTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label_adminDashboardTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -367,27 +385,29 @@ public class AdminDashboardUI extends javax.swing.JFrame {
                 .addComponent(button_viewERBranch)
                 .addGap(18, 18, 18)
                 .addComponent(button_viewServices)
-                .addGap(77, 77, 77))
+                .addGap(97, 97, 97))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_adminDashboardTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                .addGap(48, 48, 48)
+                .addComponent(label_adminDashboardTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(button_manageCompany)
                     .addComponent(button_addEmergency)
                     .addComponent(button_viewCompany)
                     .addComponent(button_viewERBranch)
                     .addComponent(button_viewServices))
-                .addGap(40, 40, 40))
+                .addGap(43, 43, 43))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 18, 960, 150));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -2, 1000, 170));
 
+        jLayeredPane1.setBackground(new java.awt.Color(255, 251, 235));
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
+        jPanel2.setBackground(new java.awt.Color(255, 251, 235));
         jPanel2.setPreferredSize(new java.awt.Dimension(970, 450));
 
         table_manageCompany.setModel(new javax.swing.table.DefaultTableModel(
@@ -399,7 +419,7 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false
@@ -439,24 +459,25 @@ public class AdminDashboardUI extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 958, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(jPanel2, "card2");
 
+        jPanel3.setBackground(new java.awt.Color(255, 251, 235));
         jPanel3.setPreferredSize(new java.awt.Dimension(970, 450));
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(452, 300));
@@ -525,21 +546,22 @@ public class AdminDashboardUI extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(8, Short.MAX_VALUE)
+                .addContainerGap(62, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(jPanel3, "card3");
 
+        jPanel4.setBackground(new java.awt.Color(255, 251, 235));
         jPanel4.setPreferredSize(new java.awt.Dimension(970, 450));
 
         jScrollPane4.setPreferredSize(new java.awt.Dimension(452, 300));
@@ -553,7 +575,7 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -588,24 +610,25 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 958, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(jPanel4, "card3");
 
+        jPanel5.setBackground(new java.awt.Color(255, 251, 235));
         jPanel5.setPreferredSize(new java.awt.Dimension(970, 450));
 
         jScrollPane5.setPreferredSize(new java.awt.Dimension(452, 300));
@@ -633,7 +656,7 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -666,26 +689,28 @@ public class AdminDashboardUI extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 952, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 982, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(62, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jLayeredPane1.add(jPanel5, "card3");
 
-        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 970, 380));
+        getContentPane().add(jLayeredPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 1000, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -693,10 +718,10 @@ public class AdminDashboardUI extends javax.swing.JFrame {
     private void button_manageCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_manageCompanyActionPerformed
         
         Connection conDB = null;
-        long companyID = 0;
+        String companyID = "";
         String companyName = "";
         String companyAddress = "";
-        int postalCode = 0;
+        String postalCode = "";
         String subDuration = "";
         String status = "";
         String serviceProvided = "";
@@ -721,10 +746,10 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             
             while(rs.next() && rs2.next()){
                 
-                   companyID =(Long.parseLong(rs.getString("companyID")));
+                   companyID = rs.getString("companyID");
                    companyName = rs.getString("companyName");
                    companyAddress = rs.getString("companyAddress");
-                   postalCode = (Integer.parseInt(rs.getString("postalCode")));
+                   postalCode = (rs.getString("postalCode"));
                    subDuration = rs.getString("subscriptionDuration");
                    status = rs.getString("status");
                    serviceProvided = rs2.getString("serviceType");
@@ -757,7 +782,7 @@ public class AdminDashboardUI extends javax.swing.JFrame {
         int index = table_manageCompany.getSelectedRow();
         TableModel model = table_manageCompany.getModel();
         
-        companyID = (Long.parseLong(model.getValueAt(index, 0).toString()));
+        companyID = (model.getValueAt(index, 0).toString());
         
         jdialog_verifyCompany.setVisible(true);
         jdialog_verifyCompany.pack();
@@ -803,12 +828,11 @@ public class AdminDashboardUI extends javax.swing.JFrame {
         
         EmergencyBranch erbranchEntity = EmergencyBranch.getInstance();
         
-        long branchID = (Long.parseLong(textField_id.getText()));
+        String branchID = textField_id.getText();
         String branchName = textField_branchName.getText();
         String branchAddress = textField_branchAddress.getText();
-        int postalCode = (Integer.parseInt(textField_postalCode.getText()));
+        String postalCode = textField_postalCode.getText();
         String contactNumber = textField_contactNumber.getText();
-        
         
         erbranchEntity.setBranchID(branchID);
         erbranchEntity.setBranchName(branchName);
@@ -831,13 +855,9 @@ public class AdminDashboardUI extends javax.swing.JFrame {
     String description = textArea_description.getText();
 
     try{
-            
             Connection conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
             Statement stmt = conDB.createStatement();
 
-            /**code for insert operation. Here we insert into two table, first is company table second is services table
-             * the company table will store the company data while the services will store all the services data provided by that company
-             */
             stmt.executeUpdate("INSERT INTO emergencybranch (branchID, branchName,branchAddress,branchPostalCode,contactNumber) "
                     + "VALUES ('"+erbranchEntity.getBranchID()+"','"+erbranchEntity.getBranchName()+"','"+erbranchEntity.getBranchAddress()+"',"
                             + "'"+erbranchEntity.getPostalCode()+"','"+erbranchEntity.getContactNumber()+"')");
@@ -874,8 +894,8 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             model.setRowCount(0);
             
             while(rs.next()){
-                   Object[] row = {(Long.parseLong(rs.getString("companyID"))),rs.getString("companyName"),rs.getString("companyAddress"),
-                       (Integer.parseInt(rs.getString("postalCode"))), rs.getString("contactNumber"),
+                   Object[] row = {(rs.getString("companyID")),rs.getString("companyName"),rs.getString("companyAddress"),
+                       (rs.getString("postalCode")), rs.getString("contactNumber"),
                        rs.getString("subscriptionDate"),rs.getString("subscriptionDuration")};
                    model.addRow(row); 
             }
@@ -909,7 +929,7 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             
             while(rs.next()){
                    Object[] row = {rs.getString("branchID"),rs.getString("branchName"),rs.getString("branchAddress"),
-                       (Integer.parseInt(rs.getString("branchPostalCode"))), rs.getString("contactNumber")};
+                       (rs.getString("branchPostalCode")), rs.getString("contactNumber")};
                    model.addRow(row); 
             }
             
@@ -941,9 +961,9 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             model.setRowCount(0);
             
             while(rs.next()){
-                   Object[] row = {(Integer.parseInt(rs.getString("serviceID"))),(Long.parseLong(rs.getString("providerID"))),
+                   Object[] row = {(Integer.parseInt(rs.getString("serviceID"))),rs.getString("providerID"),
                        rs.getString("providerName"),rs.getString("serviceType"), rs.getString("serviceDescription"),
-                       (Integer.parseInt(rs.getString("postalCode")))};
+                       (rs.getString("postalCode"))};
                    model.addRow(row); 
             }
             
@@ -997,7 +1017,6 @@ public class AdminDashboardUI extends javax.swing.JFrame {
             }
         });
     }
-    
     
     public void switchPanel(JPanel panel){
         jLayeredPane1.removeAll();

@@ -20,7 +20,7 @@ import javax.swing.table.TableModel;
  */
 public class UserDashboardUI extends javax.swing.JFrame {
     
-    long providerID_ready = 0;
+    String providerID_ready = "";
     String serviceType_ready = "";
     int requestID = 0;
     
@@ -585,7 +585,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
         Connection conDB = null;
         String name = "";
         String address = "";
-        int postalCode = 0;
+        String postalCode = "";
         String contactNumber = "";
         
         
@@ -604,7 +604,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
             while(rs.next()){
                 name = (rs.getString("companyName"));
                 address =(rs.getString("companyAddress"));
-                postalCode = (Integer.parseInt(rs.getString("postalCode")));
+                postalCode = (rs.getString("postalCode"));
                 contactNumber = (rs.getString("contactNumber"));
                 
                 Object[] row = {name,address,postalCode,contactNumber};
@@ -637,11 +637,11 @@ public class UserDashboardUI extends javax.swing.JFrame {
         
         Connection conDB = null;
         int id = 0;
-        long providerID = 0;
+        String providerID = "";
         String providerName = "";
         String serviceType = "";
         String description = "";
-        int postalCode = 0;
+        String postalCode = "";
         
         
         try{
@@ -657,11 +657,11 @@ public class UserDashboardUI extends javax.swing.JFrame {
             
             while(rs.next()){
                 id = (Integer.parseInt(rs.getString("serviceID")));
-                providerID =(Long.parseLong(rs.getString("providerID")));
+                providerID =(rs.getString("providerID"));
                 providerName = (rs.getString("providerName"));
                 serviceType = (rs.getString("serviceType"));
                 description = (rs.getString("serviceDescription"));
-                postalCode = (Integer.parseInt(rs.getString("postalCode")));
+                postalCode = (rs.getString("postalCode"));
                 
                 Object[] row = {id,providerID,providerName,serviceType,description,postalCode};
                 model.addRow(row);
@@ -681,7 +681,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
         
         Connection conDB = null;
         int id = 0;
-        long providerID = 0;
+        String providerID = "";
         String serviceType = "";
         String description = "";
         String location = "";
@@ -704,7 +704,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
             while(rs.next()){
                 
                 id = (Integer.parseInt(rs.getString("requestID")));
-                providerID =(Long.parseLong(rs.getString("providerID")));
+                providerID =(rs.getString("providerID"));
                 serviceType = rs.getString("serviceType");
                 description = rs.getString("description");
                 location = rs.getString("location");
@@ -731,7 +731,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
         int index = table_helpRequest.getSelectedRow();
         TableModel model = table_helpRequest.getModel();
         
-        providerID_ready = (Long.parseLong(model.getValueAt(index, 1).toString()));
+        providerID_ready = (model.getValueAt(index, 1).toString());
         serviceType_ready = model.getValueAt(index, 3).toString();
 
         jdialog_requestConfirmation.setVisible(true);
@@ -741,9 +741,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
     }//GEN-LAST:event_table_helpRequestMouseClicked
 
     private void button_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_cancelActionPerformed
-
         jdialog_requestConfirmation.dispose();
-
     }//GEN-LAST:event_button_cancelActionPerformed
 
     private void button_confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_confirmActionPerformed
@@ -759,8 +757,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
             conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
             Statement stmt = conDB.createStatement();
 
-            //code for insert operation
-            
+            //code for insert operation and check what type of service is this. Either is normal or emergency
             if(serviceType_ready.equals("Police") || serviceType_ready.equals("Hospital")){
                 stmt.executeUpdate("INSERT INTO request (userID, userName,providerID,serviceType,description,status,location,feedback) "
                 + "VALUES ('"+userEntity.getUserID()+"','"+userEntity.getUserName()+"','"+providerID_ready+"',"
@@ -774,7 +771,6 @@ public class UserDashboardUI extends javax.swing.JFrame {
             
         }
         catch(SQLException exception){
-
             System.out.print(exception.getMessage());
         }
         
@@ -789,7 +785,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
         
         requestID = (Integer.parseInt(model.getValueAt(index, 0).toString()));
         
-        
+        //if status is accepted then user can click to give review which in terms meaning ending the services. Job Done.
         if(model.getValueAt(index, 5).toString().equals("Accepted")){
             jdialog_completeRequest.setVisible(true);
             jdialog_completeRequest.pack();
@@ -821,7 +817,6 @@ public class UserDashboardUI extends javax.swing.JFrame {
         }
         
         jdialog_completeRequest.dispose();
-
     }//GEN-LAST:event_button_DoneActionPerformed
 
     /**

@@ -199,8 +199,7 @@ public class LoginUI extends javax.swing.JFrame {
     private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
         String userType = comboBox_userType.getSelectedItem().toString();  //we allow user to select their role such as "as a user" or "as a company"
         
-        
-        //check what user is loggin in. Either normal user or a provvider which whom are the company or admin
+        //check what user is loggin in. Either normal user or a provider which whom are the company or admin
         if(userType.equals("User")){
             String userID = "";
             String password = "";
@@ -270,7 +269,7 @@ public class LoginUI extends javax.swing.JFrame {
                 System.out.println(e);
             }
             
-
+            //check if the provider is an admin. Admin has special ID as can be detected with the code below.
             if(userID.substring(0,1).equals("A")){
                 
                 try{
@@ -291,9 +290,7 @@ public class LoginUI extends javax.swing.JFrame {
 
                 }
                 catch(SQLException exception){  //catch any sql/db error
-
                     System.out.println(exception);
-
                 }
                 
                 if(loginStatus == true){
@@ -306,14 +303,12 @@ public class LoginUI extends javax.swing.JFrame {
                 }
                 
             }
-            else{
-                
-                long userIDlong  = (Long.parseLong(textField_userID.getText()));
+            else{  //else this is just a normal provider. A company entity.            
                 //connecting to db and get the data necessary and check against user input
                 try{
                         Connection conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");  //db connection
 
-                        String query = "SELECT * from company Where companyID = '" + userIDlong + "'";  //sql query
+                        String query = "SELECT * from company Where companyID = '" + userID + "'";  //sql query
                         Statement stmt = conDB.createStatement();  
                         ResultSet rs = stmt.executeQuery(query);
 
@@ -325,10 +320,10 @@ public class LoginUI extends javax.swing.JFrame {
 
                                 //once the credentials is true set the entire company class to make sure the data is ready to be use
                                 Company companyEntity = Company.getInstance();
-                                companyEntity.setCompanyID(userIDlong);
+                                companyEntity.setCompanyID(userID);
                                 companyEntity.setCompanyName(rs.getString("companyName"));
                                 companyEntity.setCompanyAddress(rs.getString("companyAddress"));
-                                companyEntity.setPostalCode(Integer.parseInt(rs.getString("postalCode")));
+                                companyEntity.setPostalCode(rs.getString("postalCode"));
                                 companyEntity.setStatus("status");
                                 companyEntity.setContactNumber(rs.getString("contactNumber"));
                                 companyEntity.setSubscriptionDate(rs.getString("subscriptionDate"));
@@ -357,7 +352,6 @@ public class LoginUI extends javax.swing.JFrame {
     }//GEN-LAST:event_button_loginActionPerformed
 
     private void button_userRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_userRegisterActionPerformed
-
         UserRegisterUI itemloader = new UserRegisterUI();
         itemloader.setVisible(true);
         dispose();

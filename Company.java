@@ -14,11 +14,11 @@ public class Company {
     private static Company instance = null;
     
     //variable declaration and initialization
-    private long companyID = 0;
+    private String companyID = "";
     private String password ="";
     private String companyName="";
     private String companyAddress = "";
-    private int postalCode = 0;
+    private String postalCode = "";
     private String contactNumber = "";
     private String subscriptionDate = "";
     private String subscriptionDuration = "";
@@ -29,11 +29,11 @@ public class Company {
     //construtor
     private Company(){
         
-        companyID = 0;
+        companyID = "";
         password = "";
         companyName = "";
         companyAddress = "";
-        postalCode = 0;
+        postalCode = "";
         contactNumber = "";
         subscriptionDate = "";
         subscriptionDuration = "";
@@ -42,11 +42,11 @@ public class Company {
     }
     
     //getter and setter
-    public long getCompanyID() {
+    public String getCompanyID() {
         return companyID;
     }
 
-    public void setCompanyID(long companyID) {
+    public void setCompanyID(String companyID) {
         this.companyID = companyID;
     }
 
@@ -74,11 +74,11 @@ public class Company {
         this.companyAddress = companyAddress;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 

@@ -14,29 +14,29 @@ public class EmergencyBranch {
     private static EmergencyBranch instance = null;
 
     //variable declaration and initialization
-    private long branchID = 0;
+    private String branchID = "";
     private String branchName = "";
     private String branchAddress = "";
-    private int postalCode = 0;
+    private String postalCode = "";
     private String contactNumber = "";
     
     //constructor 
     private EmergencyBranch(){
         
-        branchID = 0;
+        branchID = "";
         branchName = "";
         branchAddress = "";
-        postalCode = 0;
+        postalCode = "";
         contactNumber = "";
           
     }
     
     //getter and setter
-    public long getBranchID() {
+    public String getBranchID() {
         return branchID;
     }
 
-    public void setBranchID(long branchID) {
+    public void setBranchID(String branchID) {
         this.branchID = branchID;
     }
 
@@ -56,11 +56,11 @@ public class EmergencyBranch {
         this.branchAddress = branchAddress;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(int postalCode) {
+    public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
 
