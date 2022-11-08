@@ -20,7 +20,6 @@ public class ServicesUI extends javax.swing.JFrame {
      * Creates new form services
      */
     public ServicesUI() {
-        //METHOD-1 : Using Color Fields
         initComponents();
         this.pack();
         this.setLocationRelativeTo(null);  
@@ -191,11 +190,11 @@ public class ServicesUI extends javax.swing.JFrame {
         
         //getting company class data from all the previous step that data is generated and stored
         Company companyEntity = Company.getInstance();
-        long companyID = companyEntity.getCompanyID();
+        String companyID = companyEntity.getCompanyID();
         String password = companyEntity.getPassword();
         String companyName = companyEntity.getCompanyName();
         String companyAddress = companyEntity.getCompanyAddress();
-        int postalCode = companyEntity.getPostalCode();
+        String postalCode = companyEntity.getPostalCode();
         String contactNumber = companyEntity.getContactNumber();
         String date = companyEntity.getSubscriptionDate();
         String duration = companyEntity.getSubscriptionDuration();
@@ -213,7 +212,6 @@ public class ServicesUI extends javax.swing.JFrame {
         
         // entering into the database
         try{
-            
             Connection conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
             Statement stmt = conDB.createStatement();
 

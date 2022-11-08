@@ -5,14 +5,12 @@
 package com.assignment.assignment5009cem;
 
 
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -473,7 +471,7 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
                    location = rs.getString("location");
                    status = rs.getString("status");
                    
-                   
+                   //insert into table using the model
                    Object[] row = {orderID,userID,userName,serviceType,description,location,status};
                    model.addRow(row); 
                 }
@@ -502,7 +500,6 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
         
         Company companyEntity = Company.getInstance();
         
-        
         try{
             conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
             Statement stmt = conDB.createStatement();
@@ -526,14 +523,13 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
                    status = rs.getString("status");
                    feedback = rs.getString("feedback");
                    
-                   
-                   Object[] row = {orderID,userID,userName,serviceType,location,status,feedback};
+                   //insert into table using the model
+                   Object[] row = {orderID,userID,userName,serviceType,status,location,feedback};
                    model.addRow(row); 
                 }
             }
         }
         catch(SQLException exception){
-            
             System.out.print(exception.getMessage());
         }
         
@@ -564,8 +560,8 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
         TableModel model = table_helpRequest.getModel();
         
         requestID = (Integer.parseInt(model.getValueAt(index, 0).toString()));
-
         
+        //checking the state of the help request which correspond to the table model at column 6
         if(model.getValueAt(index, 6).toString().equals("Pending")){
             jdialog_acceptJob.setVisible(true);
             jdialog_acceptJob.pack();
