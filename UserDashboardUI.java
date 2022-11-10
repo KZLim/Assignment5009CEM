@@ -242,6 +242,8 @@ public class UserDashboardUI extends javax.swing.JFrame {
         label_userDashboardTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_userDashboardTitle.setText("User Dashboard");
 
+        button_viewCompanyList.setBackground(new java.awt.Color(64, 50, 184));
+        button_viewCompanyList.setForeground(new java.awt.Color(255, 255, 255));
         button_viewCompanyList.setText("View Company");
         button_viewCompanyList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,6 +251,8 @@ public class UserDashboardUI extends javax.swing.JFrame {
             }
         });
 
+        button_RequestHelp.setBackground(new java.awt.Color(64, 50, 184));
+        button_RequestHelp.setForeground(new java.awt.Color(255, 255, 255));
         button_RequestHelp.setText("Request Help");
         button_RequestHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -256,6 +260,8 @@ public class UserDashboardUI extends javax.swing.JFrame {
             }
         });
 
+        button_viewMyRequest.setBackground(new java.awt.Color(64, 50, 184));
+        button_viewMyRequest.setForeground(new java.awt.Color(255, 255, 255));
         button_viewMyRequest.setText("My Request");
         button_viewMyRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,6 +269,8 @@ public class UserDashboardUI extends javax.swing.JFrame {
             }
         });
 
+        button_profile.setBackground(new java.awt.Color(64, 50, 184));
+        button_profile.setForeground(new java.awt.Color(255, 255, 255));
         button_profile.setText("View Profile");
         button_profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -752,10 +760,21 @@ public class UserDashboardUI extends javax.swing.JFrame {
         String description = textArea_description.getText();
         String location = textField_address.getText();
         String feedback ="";
-
-        try{
-            conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
-            Statement stmt = conDB.createStatement();
+        Boolean inputAllow = true;
+        
+        if(location.equals("")){
+            label_areYouSureTitle.setText("The Address For A Request Cannot Be Empty");
+            inputAllow = false;
+        }
+        else if(description.equals("")){
+            label_areYouSureTitle.setText("The Description Cannot Be Empty.");
+            inputAllow = false;
+        }
+        
+        if(inputAllow){
+            try{
+                conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+                Statement stmt = conDB.createStatement();
 
             //code for insert operation and check what type of service is this. Either is normal or emergency
             if(serviceType_ready.equals("Police") || serviceType_ready.equals("Hospital")){
@@ -767,19 +786,17 @@ public class UserDashboardUI extends javax.swing.JFrame {
                 + "VALUES ('"+userEntity.getUserID()+"','"+userEntity.getUserName()+"','"+providerID_ready+"',"
                 + "'"+serviceType_ready+"','"+description+"','"+"Pending"+"','"+location+"','"+feedback+"')");
             }
-            
-            
         }
         catch(SQLException exception){
             System.out.print(exception.getMessage());
         }
         
         jdialog_requestConfirmation.dispose();
+        }
     }//GEN-LAST:event_button_confirmActionPerformed
 
     private void table_myRequestMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table_myRequestMouseClicked
 
-        
         int index = table_myRequest.getSelectedRow();
         TableModel model = table_myRequest.getModel();
         
@@ -800,7 +817,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
         
         String feedback = textArea_feedback.getText();
         String newStatus = "Done";
-
+        
         try{
             conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
             Statement stmt = conDB.createStatement();
@@ -814,8 +831,7 @@ public class UserDashboardUI extends javax.swing.JFrame {
         catch(SQLException exception){
 
             System.out.print(exception.getMessage());
-        }
-        
+        }   
         jdialog_completeRequest.dispose();
     }//GEN-LAST:event_button_DoneActionPerformed
 
