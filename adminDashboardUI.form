@@ -64,9 +64,6 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="label_servicesTitle">
           <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="b8" green="32" red="40" type="rgb"/>
-            </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Emergency Services"/>
           </Properties>

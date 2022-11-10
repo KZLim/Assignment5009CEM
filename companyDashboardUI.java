@@ -140,6 +140,8 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(500, 200));
         jPanel1.setRequestFocusEnabled(false);
 
+        button_helpRequest.setBackground(new java.awt.Color(64, 50, 184));
+        button_helpRequest.setForeground(new java.awt.Color(255, 255, 255));
         button_helpRequest.setText("Help Request");
         button_helpRequest.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         button_helpRequest.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +150,8 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
             }
         });
 
+        button_viewHistory.setBackground(new java.awt.Color(60, 54, 184));
+        button_viewHistory.setForeground(new java.awt.Color(255, 255, 255));
         button_viewHistory.setText("View Record");
         button_viewHistory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,6 +159,8 @@ public class CompanyDashboardUI extends javax.swing.JFrame {
             }
         });
 
+        button_profile.setBackground(new java.awt.Color(64, 50, 184));
+        button_profile.setForeground(new java.awt.Color(255, 255, 255));
         button_profile.setText("Profile");
         button_profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

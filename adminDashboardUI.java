@@ -37,6 +37,8 @@ public class AdminDashboardUI extends javax.swing.JFrame {
         jLabel4.setFont(new Font("Serif", Font.BOLD, 20));
         jLabel5.setFont(new Font("Serif", Font.BOLD, 20));
         jLabel6.setFont(new Font("Serif", Font.BOLD, 20));
+        label_addBranchTitle.setFont(new Font("Serif", Font.BOLD, 20));
+        label_servicesTitle.setFont(new Font("Serif", Font.BOLD, 20));
     }
 
     /**
@@ -99,7 +101,6 @@ public class AdminDashboardUI extends javax.swing.JFrame {
         table_allERBranch = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
 
-        label_servicesTitle.setForeground(new java.awt.Color(64, 50, 184));
         label_servicesTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_servicesTitle.setText("Emergency Services");
 
@@ -825,7 +826,7 @@ public class AdminDashboardUI extends javax.swing.JFrame {
     }//GEN-LAST:event_button_cancel1ActionPerformed
 
     private void button_addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_addActionPerformed
-        
+                
         EmergencyBranch erbranchEntity = EmergencyBranch.getInstance();
         
         String branchID = textField_id.getText();
@@ -833,47 +834,88 @@ public class AdminDashboardUI extends javax.swing.JFrame {
         String branchAddress = textField_branchAddress.getText();
         String postalCode = textField_postalCode.getText();
         String contactNumber = textField_contactNumber.getText();
+        Boolean allowStatus = true;
         
-        erbranchEntity.setBranchID(branchID);
-        erbranchEntity.setBranchName(branchName);
-        erbranchEntity.setBranchAddress(branchAddress);
-        erbranchEntity.setPostalCode(postalCode);
-        erbranchEntity.setContactNumber(contactNumber);
         
-        jdialog_addBranch.dispose();
-        jdialog_addEmergencyServices.setVisible(true);
-        jdialog_addEmergencyServices.pack();
-        jdialog_addEmergencyServices.setLocationRelativeTo(null);
-
+        if(branchID.equals("")){
+            label_addBranchTitle.setText("The ID Cannot Be Empty");
+            allowStatus = false;
+        }
+        else if(branchName.equals("")){
+            label_addBranchTitle.setText("The Name Cannot Be Empty");
+            allowStatus = false;
+        }
+        else if(branchAddress.equals("")){
+            label_addBranchTitle.setText("The Address Cannot Be Emoty");
+            allowStatus = false; 
+        }
+        else if(postalCode.equals("")){
+            label_addBranchTitle.setText("The Postal Code Cannot Be Empty");
+            allowStatus = false;
+        }
+        else if(postalCode.length() < 5 || postalCode.length() > 5){
+            label_addBranchTitle.setText("The Postal Code Only Accept 5 Digit");
+            allowStatus = false;
+        }
+        else if(contactNumber.equals("")){
+            label_addBranchTitle.setText("Contact Number Cannot Be Empty");
+            allowStatus = false;
+        }
+        else if(contactNumber.length() <10 || contactNumber.length() > 11){
+            label_addBranchTitle.setText("Contact Number Format Invalid");
+            allowStatus = false;
+        }
+        
+        
+        if(allowStatus){
+            erbranchEntity.setBranchID(branchID);
+            erbranchEntity.setBranchName(branchName);
+            erbranchEntity.setBranchAddress(branchAddress);
+            erbranchEntity.setPostalCode(postalCode);
+            erbranchEntity.setContactNumber(contactNumber);
+        
+            jdialog_addBranch.dispose();
+            jdialog_addEmergencyServices.setVisible(true);
+            jdialog_addEmergencyServices.pack();
+            jdialog_addEmergencyServices.setLocationRelativeTo(null);
+        }
     }//GEN-LAST:event_button_addActionPerformed
 
     private void button_submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_submitActionPerformed
 
-    EmergencyBranch erbranchEntity = EmergencyBranch.getInstance();
+        EmergencyBranch erbranchEntity = EmergencyBranch.getInstance();
 
-    String serviceType = (comboBox_emergencyType.getSelectedItem().toString());
-    String description = textArea_description.getText();
+        String serviceType = (comboBox_emergencyType.getSelectedItem().toString());
+        String description = textArea_description.getText();
+        Boolean allowStatus = true;
 
-    try{
-            Connection conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
-            Statement stmt = conDB.createStatement();
-
-            stmt.executeUpdate("INSERT INTO emergencybranch (branchID, branchName,branchAddress,branchPostalCode,contactNumber) "
-                    + "VALUES ('"+erbranchEntity.getBranchID()+"','"+erbranchEntity.getBranchName()+"','"+erbranchEntity.getBranchAddress()+"',"
-                            + "'"+erbranchEntity.getPostalCode()+"','"+erbranchEntity.getContactNumber()+"')");
-            
-            
-            stmt.executeUpdate("INSERT INTO services (providerID, providerName,serviceType,serviceDescription,postalCode,status)"
-                    + "VALUES ('"+erbranchEntity.getBranchID()+"','"+erbranchEntity.getBranchName()+"','"+serviceType+"',"
-                            + "'"+description+"','"+erbranchEntity.getPostalCode()+"','"+"Approved"+"')");
-            
+        if(description.equals("")){
+            label_servicesTitle.setText("Desctiption Cannot Be Empty");
+            allowStatus = false;
         }
-        catch(SQLException exception){
-            label_servicesTitle.setText("Connection Error. Unable To Register");
-            //registerStatus = false;
+
+        if(allowStatus){
+            try{
+                Connection conDB = DriverManager.getConnection("jdbc:mysql://localhost/oecd","root","");
+                Statement stmt = conDB.createStatement();
+
+                stmt.executeUpdate("INSERT INTO emergencybranch (branchID, branchName,branchAddress,branchPostalCode,contactNumber) "
+                        + "VALUES ('"+erbranchEntity.getBranchID()+"','"+erbranchEntity.getBranchName()+"','"+erbranchEntity.getBranchAddress()+"',"
+                                + "'"+erbranchEntity.getPostalCode()+"','"+erbranchEntity.getContactNumber()+"')");
+
+
+                stmt.executeUpdate("INSERT INTO services (providerID, providerName,serviceType,serviceDescription,postalCode,status)"
+                        + "VALUES ('"+erbranchEntity.getBranchID()+"','"+erbranchEntity.getBranchName()+"','"+serviceType+"',"
+                                + "'"+description+"','"+erbranchEntity.getPostalCode()+"','"+"Approved"+"')");
+
+            }
+            catch(SQLException exception){
+                label_servicesTitle.setText("Connection Error. Unable To Register");
+                //registerStatus = false;
+            }
+
+            jdialog_addEmergencyServices.dispose();
         }
-    
-        jdialog_addEmergencyServices.dispose();
     
     }//GEN-LAST:event_button_submitActionPerformed
 

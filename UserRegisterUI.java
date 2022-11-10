@@ -24,7 +24,6 @@ public class UserRegisterUI extends javax.swing.JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         label_registerTitle.setFont(new Font("Serif", Font.BOLD, 20));
-
     }
 
     /**

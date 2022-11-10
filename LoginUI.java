@@ -42,7 +42,6 @@ public class LoginUI extends javax.swing.JFrame {
         label_userID = new javax.swing.JLabel();
         label_passwordTitle = new javax.swing.JLabel();
         textField_userID = new javax.swing.JTextField();
-        textField_password = new javax.swing.JTextField();
         button_login = new javax.swing.JButton();
         button_companyRegister = new javax.swing.JButton();
         label_loginTitle = new javax.swing.JLabel();
@@ -52,6 +51,7 @@ public class LoginUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         comboBox_userType = new javax.swing.JComboBox<>();
         label_logInAsTitle = new javax.swing.JLabel();
+        passwordField_password = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -102,6 +102,12 @@ public class LoginUI extends javax.swing.JFrame {
 
         label_logInAsTitle.setText("Log In As:");
 
+        passwordField_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordField_passwordActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,18 +129,16 @@ public class LoginUI extends javax.swing.JFrame {
                                 .addGap(464, 464, 464))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(312, 312, 312)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(label_logInAsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                            .addComponent(label_userID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(label_passwordTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(textField_userID, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboBox_userType, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(button_login)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(label_logInAsTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
-                                    .addComponent(label_userID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(label_passwordTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textField_password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField_userID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboBox_userType, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(passwordField_password, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -158,7 +162,7 @@ public class LoginUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_passwordTitle)
-                    .addComponent(textField_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordField_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(button_login)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
@@ -207,7 +211,7 @@ public class LoginUI extends javax.swing.JFrame {
             
             try{
                 userID = textField_userID.getText();
-                password = textField_password.getText();
+                password = passwordField_password.getText();
             }
             catch(NumberFormatException e){
                 System.out.println(e);
@@ -263,7 +267,7 @@ public class LoginUI extends javax.swing.JFrame {
             //to catch the error when user input nothing and press login.
             try{
                 userID  = textField_userID.getText();
-                password = textField_password.getText();
+                password = passwordField_password.getText();
             }
             catch(NumberFormatException e){
                 System.out.println(e);
@@ -357,6 +361,10 @@ public class LoginUI extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_button_userRegisterActionPerformed
 
+    private void passwordField_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordField_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordField_passwordActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -407,7 +415,7 @@ public class LoginUI extends javax.swing.JFrame {
     private static javax.swing.JLabel label_passwordTitle;
     private static javax.swing.JLabel label_userID;
     private javax.swing.JLabel label_userRegisterTitle;
-    private static javax.swing.JTextField textField_password;
+    private javax.swing.JPasswordField passwordField_password;
     private static javax.swing.JTextField textField_userID;
     // End of variables declaration//GEN-END:variables
 }

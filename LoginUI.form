@@ -68,21 +68,17 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="312" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="label_logInAsTitle" pref="69" max="32767" attributes="0"/>
+                              <Component id="label_userID" max="32767" attributes="0"/>
+                              <Component id="label_passwordTitle" pref="69" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="textField_userID" alignment="1" min="-2" pref="297" max="-2" attributes="0"/>
+                              <Component id="comboBox_userType" alignment="1" min="-2" pref="297" max="-2" attributes="0"/>
                               <Component id="button_login" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="label_logInAsTitle" pref="69" max="32767" attributes="0"/>
-                                      <Component id="label_userID" max="32767" attributes="0"/>
-                                      <Component id="label_passwordTitle" pref="69" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="textField_password" alignment="1" min="-2" pref="297" max="-2" attributes="0"/>
-                                      <Component id="textField_userID" alignment="1" min="-2" pref="297" max="-2" attributes="0"/>
-                                      <Component id="comboBox_userType" alignment="1" min="-2" pref="297" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="passwordField_password" min="-2" pref="297" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -115,7 +111,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="label_passwordTitle" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textField_password" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="passwordField_password" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="button_login" min="-2" max="-2" attributes="0"/>
@@ -156,11 +152,6 @@
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="textField_userID">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JTextField" name="textField_password">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
           </AuxValues>
@@ -254,6 +245,11 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Log In As:"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="passwordField_password">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordField_passwordActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
